@@ -27,6 +27,8 @@ export default class Homepage extends Component{
                     weather: await localMeteoRepository.getWeather(latitude,longitude),
                     weatherForecast: await forecastMeteoRepository.getWeather(latitude, longitude)
                 });
+                console.log(this.state.weatherForecast);
+
             });
         }
     }
@@ -35,23 +37,20 @@ export default class Homepage extends Component{
         return (
             <div>
                 {this.state.weather ?
-                    <main>
-                        <div className="position">
-                            <p>{this.state.weather.name}</p>
-                            <p>{this.state.weather.weather[0].description}</p>
-                            <p>{Math.floor(this.state.weather.main.temp - 273.15)}°</p>
-                            {this.state.weatherForecast.daily.map((jour,index) => {
-                                return <ul>
-                                    <li>day : {index+1}</li>
-                                    <li>temp morning : {Math.floor(jour.temp.morn - 273.15) }°</li>
-                                    <li>temp night : {Math.floor(jour.temp.night - 273.15) }°</li>
-                                    <li>IL VA FAIRE : {jour.weather[0].main}</li>
-                                    <li>test : {jour.weather[0].description}</li>
-                                </ul>
-                            })}
+                    <main className="position">
+                        <div className="position__information container">
+                            <h2>{this.state.weather.name}</h2>
+                            <h3>{Math.floor(this.state.weather.main.temp - 273.15)}°</h3>
+                            <div className="position__information-prevision">
+                                { {this.state.weatherForecast.daily.map((jour,index) => {
+                                    return <div className="position__information-prevision-day">
+                                        <h4>day : {index+1}</h4>
+                                        <span>{Math.floor(jour.temp.day - 273.15) }°</span>
+                                    </ul>
+                                })} }
+                            </div>
                         </div>
-                        <div className="forecast">
-                            <p>test</p>
+                        <div className="position__image" style={{backgroundImage: `url(/img/${this.state.weather.weather[0].icon}.jpg)`}}>
                         </div>
                     </main>
                     : <p>chargement</p>

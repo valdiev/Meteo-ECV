@@ -1,7 +1,63 @@
-//body {
-//    background-color: blue;
-//
-//    h1 {
-//        color: white;
-//    }
-//}
+*, body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 62.5%;
+}
+
+header {
+    position: fixed;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.position {
+    height: 100%;
+    min-height: 100vh;
+    display: flex;
+
+    &__information {
+        flex: 60%;
+        background-color: #fff;
+        padding: 6rem 5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: .2rem;
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 400;
+        }
+
+        h3 {
+            font-size: 6rem;
+            font-weight: 700;
+        }
+    }
+        
+    &__image {
+        flex: 40%;
+        height: initial;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-blend-mode: darken;
+    }
+}
+
+h2, h3, h4 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+p {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+}
