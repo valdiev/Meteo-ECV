@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import localMeteoRepository from "../repository/localMeteoRepository";
 import forecastMeteoRepository from "../repository/forecastMeteoRepository";
 import Loader from './Loader';
+import App from "../App";
 
 
 export default class Homepage extends Component{
@@ -55,6 +56,7 @@ export default class Homepage extends Component{
     render() {
         return (
             <div>
+                <App/>
                 {this.state.weather ?
                     <main className="position">
                         <div className="position__information container">

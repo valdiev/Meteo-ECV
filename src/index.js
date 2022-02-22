@@ -17,8 +17,7 @@ ReactDOM.render(
         <BrowserRouter>
             <Provider store={store}>
                 <Routes>
-                    <Route path="/" element={<App />}>
-                        <Route path="homepage" element={<Home />}/>
+                    <Route path="/" element={<Home />}>
                         <Route path="search" element={<Search />}/>
                         <Route path="favorite" element={<Favorite />}/>
                     </Route>
