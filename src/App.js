@@ -5,13 +5,6 @@ import {useEffect, useState} from "react";
 import {Link, Outlet} from "react-router-dom";
 
 function App() {
-
-  const [homepage,setCurrentWeather] = useState({});
-  useEffect(async ()=>{
-    const weather = await meteoRepository.currentWeather()
-    setCurrentWeather(weather)
-  }, [])
-
   return (
       <div className="main">
         <header>
