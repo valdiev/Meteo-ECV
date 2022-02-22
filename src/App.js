@@ -1,8 +1,18 @@
 import logo from './logo.svg';
 import './assets/style.scss';
+import meteoRepository from "./repository/meteoRepository";
+import {useEffect, useState} from "react";
 
 function App() {
+
+  const [currentWeather,setCurrentWeather] = useState({});
+  useEffect(async ()=>{
+    const weather = await meteoRepository.currentWeather()
+    setCurrentWeather(weather)
+    console.log(weather)
+  })
   return (
+
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
