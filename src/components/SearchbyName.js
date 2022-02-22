@@ -38,7 +38,7 @@ export default class SearchbyName extends Component{
                 <button onClick={() => this.submitForm()}>Envoyer</button>
 
                 <div className="information">
-                    <h1>{this.state.temp}</h1>
+                    <h1>{this.state.weatherByName.name}</h1>
                 </div>
             </div>
         );
