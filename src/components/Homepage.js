@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import localMeteoRepository from "../repository/localMeteoRepository";
 import forecastMeteoRepository from "../repository/forecastMeteoRepository";
-import Search from "../views/Search";
+import Loader from './Loader';
 
 export default class Homepage extends Component{
     constructor(props) {
@@ -64,7 +64,7 @@ export default class Homepage extends Component{
                         <div className="position__image" style={{backgroundImage: `url(/img/${this.state.weather.weather[0].icon}.jpg)`}}>
                         </div>
                     </main>
-                    : <p>chargement</p>
+                    : <Loader />
                 }
             </div>
         );
