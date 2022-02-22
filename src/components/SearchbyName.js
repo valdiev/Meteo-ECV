@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import getWeatherByCityName from "../repository/meteoByCityNameRepository";
+import forecastMeteoRepository from "../repository/forecastMeteoRepository";
 
 export default class SearchbyName extends Component{
     constructor(props) {
@@ -7,7 +8,8 @@ export default class SearchbyName extends Component{
         this.state = {
             ville: '',
             weatherByName: '',
-            temp: ''
+            weatherForecast: '',
+            temp: '',
         }
         this.handleChange = this.handleChange.bind(this);
     }
@@ -21,7 +23,12 @@ export default class SearchbyName extends Component{
             ...this.state,
             weatherByName: await getWeatherByCityName.getWeatherByCityName(this.state.ville),
         });
-        console.log(this.state.weatherByName)
+        this.setState({
+            ...this.state,
+            temp: this.state.weatherByName.main.temp,
+            weatherForecast: await forecastMeteoRepository.getWeather(this.state.weatherByName.coord.lat,this.state.weatherByName.coord.lon)
+        });
+        console.log(this.state.weatherForecast);
         this.state.ville = "";
     }
 
@@ -36,10 +43,13 @@ export default class SearchbyName extends Component{
                     <input type="text" id="ville" name="ville" value={this.state.ville} onChange={this.handleChange} required />
                 </div>
                 <button onClick={() => this.submitForm()}>Envoyer</button>
-
-                <div className="information">
-                    <h1>{this.state.weatherByName.name}</h1>
-                </div>
+                {this.state.weatherByName ?
+                    <div className="information">
+                        <h1>{this.state.weatherByName.name}</h1>
+                        <p>{Math.floor(this.state.temp - 273.15) } °</p>
+                    </div>
+                        : <p>Chargement</p>
+                }
             </div>
         );
     }

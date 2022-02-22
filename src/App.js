@@ -11,6 +11,7 @@ function App() {
             <ul>
                 <Link className="link" to="/homepage">HOMEPAGE</Link>
                 <Link className="link" to="/search">Page recherche</Link>
+                <Link className="link" to="/favorite">Mes favoris</Link>
             </ul>
           </div>
         </header>

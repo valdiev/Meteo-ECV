@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import localMeteoRepository from "../repository/localMeteoRepository";
 import forecastMeteoRepository from "../repository/forecastMeteoRepository";
-import Search from "../views/Search";
 
 export default class Homepage extends Component{
     constructor(props) {
