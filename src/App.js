@@ -7,12 +7,10 @@ function App() {
   return (
       <div className="main">
         <header>
-          <div className="Logo">
-            <p>Logo</p>
-          </div>
           <div className="menu">
             <ul>
-              <Link className="link" to="/homepage">Current Weather</Link>
+                <Link className="link" to="/homepage">HOMEPAGE</Link>
+                <Link className="link" to="/search">Page recherche</Link>
             </ul>
           </div>
         </header>

@@ -1,4 +1,5 @@
 import Homepage from "../components/Homepage";
+import {Link} from "react-router-dom";
 
 export default function Home(){
     return(

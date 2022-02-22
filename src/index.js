@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import Home from "./views/Home";
+import Search from "./views/Search";
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route} from "react-router-dom";
 
@@ -12,8 +13,9 @@ ReactDOM.render(
     <React.StrictMode>
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Home />}>
-                    <Route path="/homepage" element={<App />}/>
+                <Route path="/" element={<App />}>
+                    <Route path="homepage" element={<Home />}/>
+                    <Route path="search" element={<Search />}/>
                 </Route>
             </Routes>
         </BrowserRouter>
