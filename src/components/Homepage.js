@@ -3,6 +3,7 @@ import localMeteoRepository from "../repository/localMeteoRepository";
 import forecastMeteoRepository from "../repository/forecastMeteoRepository";
 import Loader from './Loader';
 
+
 export default class Homepage extends Component{
     constructor(props) {
         super(props);
