@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import localMeteoRepository from "../repository/localMeteoRepository";
+import forecastMeteoRepository from "../repository/forecastMeteoRepository";
 
 export default class Homepage extends Component{
     constructor(props) {
@@ -9,6 +10,7 @@ export default class Homepage extends Component{
             lat : "tt",
             long : "",
             weather: "",
+            weatherForecast: ""
         }
     }
 
@@ -23,7 +25,9 @@ export default class Homepage extends Component{
                     long : longitude,
                     isLoaded: true,
                     weather: await localMeteoRepository.getWeather(latitude,longitude),
+                    weatherForecast: await forecastMeteoRepository.getWeather(latitude, longitude)
                 });
+                console.log(this.state.weatherForecast);
             });
         }
     }
@@ -34,11 +38,16 @@ export default class Homepage extends Component{
             <div>
                 <p>{this.state.isLoaded}</p>
                 {this.state.isLoaded ?
-                    <div className="position">
-                        <p>{this.state.weather.name}</p>
-                        <p>{this.state.weather.weather[0].description}</p>
-                        <p>{Math.floor(this.state.weather.main.temp - 273.15)}</p>
-                    </div>
+                    <main>
+                        <div className="position">
+                            <p>{this.state.weather.name}</p>
+                            <p>{this.state.weather.weather[0].description}</p>
+                            <p>{Math.floor(this.state.weather.main.temp - 273.15)}</p>
+                        </div>
+                        <div className="forecast">
+                            <p>test</p>
+                        </div>
+                    </main>
                     : <p>chargement</p>
                 }
             </div>
