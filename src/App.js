@@ -1,6 +1,5 @@
 import logo from './logo.svg';
-import './assets/style.scss';
-import meteoRepository from "./repository/meteoRepository";
+import './assets/style/style.scss';
 import {useEffect, useState} from "react";
 import {Link, Outlet} from "react-router-dom";
 

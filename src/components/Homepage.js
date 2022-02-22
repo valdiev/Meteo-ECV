@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import localMeteoRepository from "../repository/localMeteoRepository";
 
 export default class Homepage extends Component{
     constructor(props) {
@@ -6,7 +7,8 @@ export default class Homepage extends Component{
         this.state = {
             isLoaded: false,
             lat : "tt",
-            long : ""
+            long : "",
+            weather: "",
         }
     }
 
@@ -20,8 +22,8 @@ export default class Homepage extends Component{
                     lat: latitude,
                     long : longitude,
                     isLoaded: true,
+                    weather: await localMeteoRepository.getWeather(latitude,longitude),
                 });
-
             });
         }
     }
@@ -33,8 +35,9 @@ export default class Homepage extends Component{
                 <p>{this.state.isLoaded}</p>
                 {this.state.isLoaded ?
                     <div className="position">
-                        <p>{this.state.long}</p>
-                        <p>{this.state.lat}</p>
+                        <p>{this.state.weather.name}</p>
+                        <p>{this.state.weather.weather[0].description}</p>
+                        <p>{Math.floor(this.state.weather.main.temp - 273.15)}</p>
                     </div>
                     : <p>chargement</p>
                 }
