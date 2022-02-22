@@ -1,132 +1,51 @@
-$color: #5C8DF6;
-$colorRight: darken(#5C8DF6, 15%);
-$colorLeft: darken(#5C8DF6, 5%);
-$shadow: #DBE3F4;
+$sky: rgba(100, 150, 255, 1);
+$sun: rgba(255, 255, 50, 1);
+$cloud: rgba(250, 250, 250, 1);
 
-.boxes {
-  --size: 32px;
-  --duration: 800ms;
-  height: calc(var(--size) * 2);
-  width: calc(var(--size) * 3);
-  position: relative;
-  transform-style: preserve-3d;
-  transform-origin: 50% 50%;
-  margin-top: calc(var(--size) * 1.5 * -1);
-  transform: rotateX(60deg) rotateZ(45deg) rotateY(0deg) translateZ(0px);
-  .box {
-    width: var(--size);
-    height: var(--size);
-    top: 0;
-    left: 0;
+body, html{
+  background: $sky;
+}
+
+.weather-loader{
+  width: 70px;
+  height: 70px;
+  background: $sun;
+  border-radius: 50%;
+  position: absolute;
+  top: calc(50% - 35px);
+  left: calc(50% - 35px);
+
+  &:after,
+  &:before{
+    content: '';
     position: absolute;
-    transform-style: preserve-3d;
-    &:nth-child(1) {
-      transform: translate(100%, 0);
-      animation: box1 var(--duration) linear infinite;
-    }
-    &:nth-child(2) {
-      transform: translate(0, 100%);
-      animation: box2 var(--duration) linear infinite;
-    }
-    &:nth-child(3) {
-      transform: translate(100%, 100%);
-      animation: box3 var(--duration) linear infinite;
-    }
-    &:nth-child(4) {
-      transform: translate(200%, 0);
-      animation: box4 var(--duration) linear infinite;
-    }
-    & > div {
-      --background: #{$color};
-      --top: auto;
-      --right: auto;
-      --bottom: auto;
-      --left: auto;
-      --translateZ: calc(var(--size) / 2);
-      --rotateY: 0deg;
-      --rotateX: 0deg;
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: var(--background);
-      top: var(--top);
-      right: var(--right);
-      bottom: var(--bottom);
-      left: var(--left);
-      transform: rotateY(var(--rotateY)) rotateX(var(--rotateX)) translateZ(var(--translateZ));
-      &:nth-child(1) {
-        --top: 0;
-        --left: 0;
-      }
-      &:nth-child(2) {
-        --background: #{$colorRight};
-        --right: 0;
-        --rotateY: 90deg;
-      }
-      &:nth-child(3) {
-        --background: #{$colorLeft};
-        --rotateX: -90deg;
-      }
-      &:nth-child(4) {
-        --background: #{$shadow};
-        --top: 0;
-        --left: 0;
-        --translateZ: calc(var(--size) * 3 * -1);
-      }
-    }
+    top: 40px;
+    left: 20px;
+    background: $cloud;
+    display: block;
+    width: 50px;
+    height: 40px;
+    border-radius: 50%;
+    animation: cloud1 2.5s ease-in-out infinite alternate;
+    box-shadow: 20px -15px 0 $cloud,
+    40px 10px 0 $cloud,
+    55px -15px 0 $cloud,
+    75px 0px 0 $cloud;
+  }
+
+  &:before{
+    left: -80px;
+    top: 0;
+    animation-name: cloud2;
   }
 }
 
-@keyframes box1 {
-  0%,
-  50% {
-    transform: translate(100%, 0);
-  }
-  100% {
-    transform: translate(200%, 0);
-  }
+@keyframes cloud1 {
+  from {  margin-left: 0; }
+  to {  margin-left: 50px; }
 }
 
-@keyframes box2 {
-  0%{
-    transform: translate(0, 100%);
-  }
-  50% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(100%, 0);
-  }
-}
-
-@keyframes box3 {
-  0%,
-  50% {
-    transform: translate(100%, 100%);
-  }
-  100% {
-    transform: translate(0, 100%);
-  }
-}
-
-@keyframes box4 {
-  0%{
-    transform: translate(200%, 0);
-  }
-  50% {
-    transform: translate(200%, 100%);
-  }
-  100% {
-    transform: translate(100%, 100%);
-  }
-}
-
-div.boxes_container {
-  min-height: 100vh;
-  font-family: Roboto, Arial;
-  color: #ADAFB6;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #F9FBFF;
+@keyframes cloud2 {
+  from {  margin-left: 0; }
+  to {  margin-left: -50px; }
 }
