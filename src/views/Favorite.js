@@ -7,11 +7,18 @@ export default class Favorite extends Component{
             listOfFavorite: [],
         };
     }
+
+    componentDidMount = () => {
+        this.setState({ listOfFavorite: this.props.listOfFavorite });
+    }
+
     render() {
         return (
-            <div className="listUsers">
-                <p>list</p>
-            </div>
+            <main>
+                {this.state.listOfFavorite.map((user) => {
+                    return <p>deml</p>
+                })}
+            </main>
         );
     }
 }

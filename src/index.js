@@ -7,19 +7,23 @@ import Search from "./views/Search";
 import Favorite from "./views/Favorite";
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route} from "react-router-dom";
+import store from "./store/store";
+import {Provider} from "react-redux";
 
 const rootElement = document.getElementById('root');
 
 ReactDOM.render(
     <React.StrictMode>
         <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<App />}>
-                    <Route path="homepage" element={<Home />}/>
-                    <Route path="search" element={<Search />}/>
-                    <Route path="favorite" element={<Favorite />}/>
-                </Route>
-            </Routes>
+            <Provider store={store}>
+                <Routes>
+                    <Route path="/" element={<App />}>
+                        <Route path="homepage" element={<Home />}/>
+                        <Route path="search" element={<Search />}/>
+                        <Route path="favorite" element={<Favorite />}/>
+                    </Route>
+                </Routes>
+            </Provider>
         </BrowserRouter>
     </React.StrictMode>,
     rootElement

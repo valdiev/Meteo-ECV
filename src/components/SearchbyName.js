@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import getWeatherByCityName from "../repository/meteoByCityNameRepository";
 import forecastMeteoRepository from "../repository/forecastMeteoRepository";
+import {addFavorite} from "../store/reducers/favoriteReducer";
+import { connect } from "react-redux";
+import Card from "./Card";
 
-export default class SearchbyName extends Component{
+class SearchbyName extends Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -17,7 +20,26 @@ export default class SearchbyName extends Component{
     handleChange(value) {
         this.setState({ [value.target.name]: value.target.value })
     }
-
+    format(days,format) {
+        if(format === "long") {
+            let options = { weekday: 'long', month: 'long', day: 'numeric'}
+            let currentDate = new Date();
+            return this.addDaysToDate(currentDate, days).toLocaleDateString([],options);
+        }
+        else{
+            let options = { weekday: 'long'}
+            let currentDate = new Date();
+            return this.addDaysToDate(currentDate, days).toLocaleDateString([],options);
+        }
+    }
+    addDaysToDate(date, days) {
+        var dt = new Date(date);
+        dt.setDate(dt.getDate() + days);
+        return dt;
+    }
+    submitFormFavorite = () => {
+        this.props.addFavorite({ville: this.state.ville});
+    }
     async submitForm() {
         this.setState({
             ...this.state,
@@ -44,13 +66,45 @@ export default class SearchbyName extends Component{
                 </div>
                 <button onClick={() => this.submitForm()}>Envoyer</button>
                 {this.state.weatherByName ?
-                    <div className="information">
-                        <h1>{this.state.weatherByName.name}</h1>
-                        <p>{Math.floor(this.state.temp - 273.15) } °</p>
-                    </div>
+                    <main className="position">
+                        <div className="position__information container">
+                            <div className="position__information-date">
+                                <h2>{this.format(0,"long")}</h2>
+                            </div>
+                            <div className="position__information-city">
+                                <h2>{this.state.weatherByName.name}</h2>
+                                <h3>{Math.floor(this.state.weatherByName.main.temp - 273.15)}°</h3>
+                            </div>
+                            <div className="position__information-prevision">
+                                {/*{this.state.weatherForecast.daily.map((jour,index) => {*/}
+                                {/*    return <div className="position__information-prevision-day">*/}
+                                {/*        <h4>{this.format(index+1,"court")}</h4>*/}
+                                {/*        <span>{Math.floor(jour.temp.day - 273.15) }°</span>*/}
+                                {/*    </div>*/}
+                                {/*})}*/}
+                            </div>
+                        </div>
+                        <div className="position__image" style={{backgroundImage: `url(/img/${this.state.weatherByName.weather[0].icon}.jpg)`}}>
+                        </div>
+                    </main>
                         : <p>Chargement</p>
                 }
             </div>
         );
     }
 }
+
+
+const mapDispatchToProps = dispatch => {
+    return {
+        addFavorite: (favorite) => dispatch(addFavorite(favorite))
+    }
+};
+
+const mapStateToProps = state => {
+    return {
+        listOfFavorite: state.favorite.listOfFavorite
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(SearchbyName);
