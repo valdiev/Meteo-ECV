@@ -15,11 +15,23 @@ export default class Homepage extends Component{
         }
     }
 
-    format() {
-        var options = { weekday: 'long', month: 'long', day: 'numeric'}
-        return new Date().toLocaleDateString([], options);
+    format(days,format) {
+        if(format === "long") {
+            let options = { weekday: 'long', month: 'long', day: 'numeric'}
+            let currentDate = new Date();
+            return this.addDaysToDate(currentDate, days).toLocaleDateString([],options);
+        }
+        else{
+            let options = { weekday: 'long'}
+            let currentDate = new Date();
+            return this.addDaysToDate(currentDate, days).toLocaleDateString([],options);
+        }
     }
-
+    addDaysToDate(date, days) {
+        var dt = new Date(date);
+        dt.setDate(dt.getDate() + days);
+        return dt;
+    }
     async componentDidMount(){
         if ("geolocation" in navigator) {
             navigator.geolocation.getCurrentPosition(async (position) => {
@@ -46,7 +58,7 @@ export default class Homepage extends Component{
                     <main className="position">
                         <div className="position__information container">
                             <div className="position__information-date">
-                                <h2>{this.format()}</h2>
+                                <h2>{this.format(0,"long")}</h2>
                             </div>
                             <div className="position__information-city">
                                 <h2>{this.state.weather.name}</h2>
@@ -55,7 +67,7 @@ export default class Homepage extends Component{
                             <div className="position__information-prevision">
                                 {this.state.weatherForecast.daily.map((jour,index) => {
                                     return <div className="position__information-prevision-day">
-                                            <h4>day : {index+1}</h4>
+                                            <h4>{this.format(index+1,"court")}</h4>
                                             <span>{Math.floor(jour.temp.day - 273.15) }°</span>
                                         </div>
                                 })}
