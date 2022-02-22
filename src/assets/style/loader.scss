@@ -2,8 +2,9 @@ $sky: rgba(100, 150, 255, 1);
 $sun: rgba(255, 255, 50, 1);
 $cloud: rgba(250, 250, 250, 1);
 
-body, html{
+.loader_container{
   background: $sky;
+  height: 100vh;
 }
 
 .weather-loader{
