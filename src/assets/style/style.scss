@@ -8,6 +8,16 @@ body {
     font-size: 62.5%;
 }
 
+
+h2, h3, h4 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+p {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+}  
+
 header {
     position: fixed;
 }
@@ -41,6 +51,8 @@ header {
         }
 
         &-city {
+            text-align: center;
+
             h2 {
                 font-size: 2rem;
                 font-weight: 400;
@@ -49,7 +61,6 @@ header {
             h3 {
                 font-size: 6rem;
                 font-weight: 700;
-                text-align: center;
             }
         }
 
@@ -102,11 +113,55 @@ header {
     }
 }
 
-h2, h3, h4 {
-    font-family: 'Montserrat', sans-serif;
+@media screen and (max-width: 1024px) {
+    .position {
+        &__information {
+            flex: unset;
+            width: 50%;
+            overflow: hidden;
+            padding: 5rem 4rem;
+
+            &-prevision {
+                width: 100%;
+                overflow-x: scroll;
+                padding-bottom: 1.5rem;
+            }
+
+        }
+    }
 }
 
-p {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 400;
+@media screen and (max-width: 768px) {
+    main {
+        display: flex;
+        .position {
+            position: relative;
+            display: block;
+
+            &__information {
+                background-color: unset;
+                width: unset;
+                color: #fff;
+            }
+
+            &__image {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: -1;
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(0, 0, 0, 0.300);
+                }
+            }
+        }
+    }
 }
