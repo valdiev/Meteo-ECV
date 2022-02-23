@@ -4,6 +4,7 @@ import forecastMeteoRepository from "../repository/forecastMeteoRepository";
 import {addFavorite} from "../store/reducers/favoriteReducer";
 import { connect } from "react-redux";
 import Card from "./Card";
+import App from "../App";
 
 class SearchbyName extends Component{
     constructor(props) {
@@ -50,7 +51,7 @@ class SearchbyName extends Component{
             temp: this.state.weatherByName.main.temp,
             weatherForecast: await forecastMeteoRepository.getWeather(this.state.weatherByName.coord.lat,this.state.weatherByName.coord.lon)
         });
-        console.log(this.state.weatherForecast);
+        // console.log(this.state.weatherForecast);
         this.state.ville = "";
     }
 
@@ -59,6 +60,7 @@ class SearchbyName extends Component{
     render() {
         return (
             <div className="formulaire">
+                <App/>
                 <hr/>
                 <div className="form_indiv">
                     <label htmlFor="nom">Ville</label>
@@ -66,28 +68,8 @@ class SearchbyName extends Component{
                 </div>
                 <button onClick={() => this.submitForm()}>Envoyer</button>
                 {this.state.weatherByName ?
-                    <main className="position">
-                        <div className="position__information container">
-                            <div className="position__information-date">
-                                <h2>{this.format(0,"long")}</h2>
-                            </div>
-                            <div className="position__information-city">
-                                <h2>{this.state.weatherByName.name}</h2>
-                                <h3>{Math.floor(this.state.weatherByName.main.temp - 273.15)}°</h3>
-                            </div>
-                            <div className="position__information-prevision">
-                                {/*{this.state.weatherForecast.daily.map((jour,index) => {*/}
-                                {/*    return <div className="position__information-prevision-day">*/}
-                                {/*        <h4>{this.format(index+1,"court")}</h4>*/}
-                                {/*        <span>{Math.floor(jour.temp.day - 273.15) }°</span>*/}
-                                {/*    </div>*/}
-                                {/*})}*/}
-                            </div>
-                        </div>
-                        <div className="position__image" style={{backgroundImage: `url(/img/${this.state.weatherByName.weather[0].icon}.jpg)`}}>
-                        </div>
-                    </main>
-                        : <p>Chargement</p>
+                    <Card name={this.state.weatherByName.name} temp={this.state.weatherByName.main.temp} weather={this.state.weatherByName.weather[0].icon} listPrevision={this.state.weatherForecast.daily}/>
+                        : <h1>En attente d'une ville</h1>
                 }
             </div>
         );

@@ -3,6 +3,7 @@ import localMeteoRepository from "../repository/localMeteoRepository";
 import forecastMeteoRepository from "../repository/forecastMeteoRepository";
 import Loader from './Loader';
 import App from "../App";
+import Card from "./Card";
 
 
 export default class Homepage extends Component{
@@ -15,24 +16,6 @@ export default class Homepage extends Component{
             weatherForecast: "",
             ville: "",
         }
-    }
-
-    format(days,format) {
-        if(format === "long") {
-            let options = { weekday: 'long', month: 'long', day: 'numeric'}
-            let currentDate = new Date();
-            return this.addDaysToDate(currentDate, days).toLocaleDateString([],options);
-        }
-        else{
-            let options = { weekday: 'long'}
-            let currentDate = new Date();
-            return this.addDaysToDate(currentDate, days).toLocaleDateString([],options);
-        }
-    }
-    addDaysToDate(date, days) {
-        var dt = new Date(date);
-        dt.setDate(dt.getDate() + days);
-        return dt;
     }
     async componentDidMount(){
         if ("geolocation" in navigator) {
@@ -58,27 +41,7 @@ export default class Homepage extends Component{
             <div>
                 <App/>
                 {this.state.weather ?
-                    <main className="position">
-                        <div className="position__information container">
-                            <div className="position__information-date">
-                                <h2>{this.format(0,"long")}</h2>
-                            </div>
-                            <div className="position__information-city">
-                                <h2>{this.state.weather.name}</h2>
-                                <h3>{Math.floor(this.state.weather.main.temp - 273.15)}°</h3>
-                            </div>
-                            <div className="position__information-prevision">
-                                {this.state.weatherForecast.daily.map((jour,index) => {
-                                    return <div className="position__information-prevision-day">
-                                            <h4>{this.format(index+1,"court")}</h4>
-                                            <span>{Math.floor(jour.temp.day - 273.15) }°</span>
-                                        </div>
-                                })}
-                            </div>
-                        </div>
-                        <div className="position__image" style={{backgroundImage: `url(/img/${this.state.weather.weather[0].icon}.jpg)`}}>
-                        </div>
-                    </main>
+                    <Card name={this.state.weather.name} temp={this.state.weather.main.temp} weather={this.state.weather.weather[0].icon} listPrevision={this.state.weatherForecast.daily}/>
                     : <Loader />
                 }
             </div>
