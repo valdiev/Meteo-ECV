@@ -67,7 +67,6 @@ header {
         &-prevision {
             display: flex;
             gap: 2rem;
-            margin-top: 5rem;
 
             h4 {
                 font-size: .8rem;
@@ -117,7 +116,7 @@ header {
     .position {
         &__information {
             flex: unset;
-            width: 50%;
+            width: 60%;
             overflow: hidden;
             padding: 5rem 4rem;
 
@@ -142,6 +141,9 @@ header {
                 background-color: unset;
                 width: unset;
                 color: #fff;
+                &-prevision {
+                    gap: 1.5rem;
+                }
             }
 
             &__image {
