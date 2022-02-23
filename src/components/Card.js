@@ -50,6 +50,7 @@ class Card extends Component{
                         {this.props.listPrevision != null ? this.props.listPrevision.map((jour,index) => {
                             return <div className="position__information-prevision-day">
                                 <h4>{this.format(index+1,"court")}</h4>
+                                <span className="icon"><img src={`./img/svg/${jour.weather[0].icon}.svg`}></img></span>
                                 <span>{Math.floor(jour.temp.day - 273.15) }°</span>
                             </div>
                         }) : null }
