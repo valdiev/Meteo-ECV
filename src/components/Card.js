@@ -36,7 +36,8 @@ class Card extends Component {
         return (
             <main className="position">
                 <div className="position__information container">
-                    {this.props.recherche === true ? <button onClick={() => this.submitForm()}>Ajouter aux favoris</button> : null}
+                    {this.props.recherche === true ? <div><button onClick={() => this.submitForm()}>Ajouter aux favoris</button><a href="/favorite">fav</a></div>
+                        : null}
                     <div className="position__information-date">
                         <h2>{this.format(0, "long")}</h2>
                     </div>

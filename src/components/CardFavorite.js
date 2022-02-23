@@ -13,14 +13,15 @@ class CardFavorite extends Component {
 
     render() {
         return (
-            <main className="position">
-                <div><p>{this.props.ville}</p>
+            <div>
+                <div>
+                    <p>{this.props.ville}</p>
                     <p>{this.props.temp}</p>
-                    {this.props.daily.map((previ)=>{
-                        return <p>{previ.temp.day}</p>
-                    })}
+                    {this.props.daily ? this.props.daily.map((prevision,index)=>{
+                        return <p>{prevision.temp.day}</p>
+                    }) : null }
                 </div>
-            </main>
+            </div>
         );
     }
 }

@@ -6,8 +6,7 @@ class Favorite extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            listOfFavorite: [],
-            ville: "lille",
+            listOfFavorite: [{ville:"Lille",temp:12,daily:null}],
         };
     }
 
@@ -18,9 +17,10 @@ class Favorite extends Component{
     render() {
         return (
             <main>
-                {this.state.listOfFavorite ? this.state.listOfFavorite.map((user) => {
+                {this.state.listOfFavorite ? this.state.listOfFavorite.map((user,index) => {
+                    console.log(user.daily)
                     return <CardFavorite ville={user.ville} temp={user.temp} daily={user.daily}/>
-                }) : null }
+                }): null }
             </main>
         );
     }

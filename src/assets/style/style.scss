@@ -18,30 +18,30 @@ p {
     font-weight: 400;
 }  
 
-header {
-    position: fixed;
-    width: 60%;
-    padding: 1rem 5rem;
-
-    nav {
-        ul {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            li {
-                list-style: none;
-
-                a {
-                    text-decoration: none;
-                    font-family: 'Montserrat', sans-serif;
-                    font-size: .8rem;
-                    color: #000;
-                }
-            }
-        }
-    }
-}
+//header {
+//    position: fixed;
+//    width: 60%;
+//    padding: 1rem 5rem;
+//
+//    nav {
+//        ul {
+//            display: flex;
+//            justify-content: space-between;
+//            align-items: center;
+//
+//            li {
+//                list-style: none;
+//
+//                a {
+//                    text-decoration: none;
+//                    font-family: 'Montserrat', sans-serif;
+//                    font-size: .8rem;
+//                    color: #000;
+//                }
+//            }
+//        }
+//    }
+//}
 
 .container {
     width: 80%;
