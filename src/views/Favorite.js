@@ -1,11 +1,13 @@
 import {Component} from "react";
 import {connect} from "react-redux";
+import CardFavorite from "../components/CardFavorite";
 
 class Favorite extends Component{
     constructor(props) {
         super(props);
         this.state = {
             listOfFavorite: [],
+            ville: "lille",
         };
     }
 
@@ -17,8 +19,8 @@ class Favorite extends Component{
         return (
             <main>
                 {this.state.listOfFavorite ? this.state.listOfFavorite.map((user) => {
-                        return <p>{user.ville}</p>
-                    }) : null }
+                    return <CardFavorite ville={user.ville} temp={user.temp} daily={user.daily}/>
+                }) : null }
             </main>
         );
     }

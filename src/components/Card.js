@@ -30,9 +30,7 @@ class Card extends Component {
     }
 
     submitForm() {
-        console.log("j'appuie");
-        this.props.addFavorite({ ville: this.props.name });
-        console.log("je suis passé");
+        this.props.addFavorite({ ville: this.props.name, temp: this.props.temp, daily: this.props.listPrevision });
     }
     render() {
         return (

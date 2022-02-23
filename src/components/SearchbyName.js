@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import getWeatherByCityName from "../repository/meteoByCityNameRepository";
-import forecastMeteoRepository from "../repository/forecastMeteoRepository";
+import meteoRepository from "../repository/meteoRepository";
 import Card from "./Card";
 import App from "../App";
 
@@ -39,12 +38,12 @@ export default class SearchbyName extends Component{
     async submitForm() {
         this.setState({
             ...this.state,
-            weatherByName: await getWeatherByCityName.getWeatherByCityName(this.state.ville),
+            weatherByName: await meteoRepository.getWeatherByCityName(this.state.ville),
         });
         this.setState({
             ...this.state,
             temp: this.state.weatherByName.main.temp,
-            weatherForecast: await forecastMeteoRepository.getWeather(this.state.weatherByName.coord.lat,this.state.weatherByName.coord.lon)
+            weatherForecast: await meteoRepository.getWeatherOneCall(this.state.weatherByName.coord.lat,this.state.weatherByName.coord.lon)
         });
         // console.log(this.state.weatherForecast);
         this.state.ville = "";
