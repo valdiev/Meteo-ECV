@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import getWeatherByCityName from "../repository/meteoByCityNameRepository";
 import forecastMeteoRepository from "../repository/forecastMeteoRepository";
-import {addFavorite} from "../store/reducers/favoriteReducer";
-import { connect } from "react-redux";
 import Card from "./Card";
 import App from "../App";
 
-class SearchbyName extends Component{
+export default class SearchbyName extends Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -38,9 +36,6 @@ class SearchbyName extends Component{
         dt.setDate(dt.getDate() + days);
         return dt;
     }
-    submitFormFavorite = () => {
-        this.props.addFavorite({ville: this.state.ville});
-    }
     async submitForm() {
         this.setState({
             ...this.state,
@@ -68,25 +63,10 @@ class SearchbyName extends Component{
                 </div>
                 <button onClick={() => this.submitForm()}>Envoyer</button>
                 {this.state.weatherByName ?
-                    <Card name={this.state.weatherByName.name} temp={this.state.weatherByName.main.temp} weather={this.state.weatherByName.weather[0].icon} listPrevision={this.state.weatherForecast.daily}/>
+                    <Card recherche={true} name={this.state.weatherByName.name} temp={this.state.weatherByName.main.temp} weather={this.state.weatherByName.weather[0].icon} listPrevision={this.state.weatherForecast.daily}/>
                         : <h1>En attente d'une ville</h1>
                 }
             </div>
         );
     }
 }
-
-
-const mapDispatchToProps = dispatch => {
-    return {
-        addFavorite: (favorite) => dispatch(addFavorite(favorite))
-    }
-};
-
-const mapStateToProps = state => {
-    return {
-        listOfFavorite: state.favorite.listOfFavorite
-    }
-}
-
-export default connect(mapStateToProps,mapDispatchToProps)(SearchbyName);

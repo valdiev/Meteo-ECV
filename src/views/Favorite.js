@@ -1,6 +1,7 @@
 import {Component} from "react";
+import {connect} from "react-redux";
 
-export default class Favorite extends Component{
+class Favorite extends Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -15,10 +16,18 @@ export default class Favorite extends Component{
     render() {
         return (
             <main>
-                {this.state.listOfFavorite.map((user) => {
-                    return <p>deml</p>
-                })}
+                {this.state.listOfFavorite ? this.state.listOfFavorite.map((user) => {
+                        return <p>{user.ville}</p>
+                    }) : null }
             </main>
         );
     }
 }
+
+const mapStateToProps = state => {
+    return {
+        listOfFavorite: state.favorite.listOfFavorite
+    }
+}
+
+export default connect(mapStateToProps)(Favorite)

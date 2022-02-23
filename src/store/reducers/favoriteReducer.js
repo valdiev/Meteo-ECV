@@ -1,4 +1,4 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice, current} from "@reduxjs/toolkit";
 
 export const favoriteSlice = createSlice({
     name: 'favorite',
@@ -6,7 +6,7 @@ export const favoriteSlice = createSlice({
         listOfFavorite: []
     },
     reducers:{
-        addEmployee: (state,action) => {
+        addFavorite: (state,action) => {
             state.listOfFavorite.push(action.payload)
         }
     }
