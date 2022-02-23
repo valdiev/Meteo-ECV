@@ -146,8 +146,11 @@ p {
 }
 
 @media screen and (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
     main {
-        display: flex;
+        // display: flex;
         .position {
             position: relative;
             display: block;

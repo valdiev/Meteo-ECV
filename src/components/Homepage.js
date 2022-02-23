@@ -38,7 +38,7 @@ export default class Homepage extends Component{
     render() {
         return (
             <div>
-                <App/>
+                {/* <App/> */}
                 {this.state.weather ?
                     <Card name={this.state.weather.name} temp={this.state.weather.main.temp} weather={this.state.weather.weather[0].icon} listPrevision={this.state.weatherForecast.daily}/>
                     : <Loader />

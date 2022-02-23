@@ -1,0 +1,74 @@
+.loader_container {
+  background: #6496ff;
+  height: 100vh;
+}
+
+.weather-loader {
+  width: 70px;
+  height: 70px;
+  background: #ffff32;
+  border-radius: 50%;
+  position: absolute;
+  top: calc(50% - 35px);
+  left: calc(50% - 35px);
+}
+
+.weather-loader:after, .weather-loader:before {
+  content: '';
+  position: absolute;
+  top: 40px;
+  left: 20px;
+  background: #fafafa;
+  display: block;
+  width: 50px;
+  height: 40px;
+  border-radius: 50%;
+  -webkit-animation: cloud1 2.5s ease-in-out infinite alternate;
+          animation: cloud1 2.5s ease-in-out infinite alternate;
+  -webkit-box-shadow: 20px -15px 0 #fafafa, 40px 10px 0 #fafafa, 55px -15px 0 #fafafa, 75px 0px 0 #fafafa;
+          box-shadow: 20px -15px 0 #fafafa, 40px 10px 0 #fafafa, 55px -15px 0 #fafafa, 75px 0px 0 #fafafa;
+}
+
+.weather-loader:before {
+  left: -80px;
+  top: 0;
+  -webkit-animation-name: cloud2;
+          animation-name: cloud2;
+}
+
+@-webkit-keyframes cloud1 {
+  from {
+    margin-left: 0;
+  }
+  to {
+    margin-left: 50px;
+  }
+}
+
+@keyframes cloud1 {
+  from {
+    margin-left: 0;
+  }
+  to {
+    margin-left: 50px;
+  }
+}
+
+@-webkit-keyframes cloud2 {
+  from {
+    margin-left: 0;
+  }
+  to {
+    margin-left: -50px;
+  }
+}
+
+@keyframes cloud2 {
+  from {
+    margin-left: 0;
+  }
+  to {
+    margin-left: -50px;
+  }
+}
+/*# sourceMappingURL=loader.css.map */

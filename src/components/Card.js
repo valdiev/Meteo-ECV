@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { addFavorite } from "../store/reducers/favoriteReducer";
 import { connect } from "react-redux";
+import App from "../App";
+
 
 class Card extends Component {
     constructor(props) {
@@ -30,11 +32,12 @@ class Card extends Component {
     }
 
     submitForm() {
-        this.props.addFavorite({ ville: this.props.name, temp: this.props.temp, daily: this.props.listPrevision });
+        this.props.addFavorite({ ville: this.props.name, temp: this.props.temp, daily: this.props.listPrevision, weather: this.props.weather });
     }
     render() {
         return (
             <main className="position">
+                <App />
                 <div className="position__information container">
                     {this.props.recherche === true ? <div><button onClick={() => this.submitForm()}>Ajouter aux favoris</button><a href="/favorite">fav</a></div>
                         : null}
