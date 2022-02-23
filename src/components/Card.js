@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { addFavorite } from "../store/reducers/favoriteReducer";
 import { connect } from "react-redux";
 import App from "../App";
+import {RiStarSLine,RiStarSFill} from "react-icons/ri";
+import meteoRepository from "../repository/meteoRepository";
 
 
 class Card extends Component {
@@ -9,6 +11,7 @@ class Card extends Component {
         super(props);
         this.state = {
             listOfFavorite: [],
+            favON : false,
         }
 
     }
@@ -33,13 +36,24 @@ class Card extends Component {
 
     submitForm() {
         this.props.addFavorite({ ville: this.props.name, temp: this.props.temp, daily: this.props.listPrevision, weather: this.props.weather });
+        if(this.state.favON === false) {
+            this.setState({
+                favON: true,
+            });
+        }
+        else{
+            this.setState({
+                favON: false,
+            });
+        }
+
     }
     render() {
         return (
             <main className="position">
                 <App />
                 <div className="position__information container">
-                    {this.props.recherche === true ? <div><button onClick={() => this.submitForm()}>Ajouter aux favoris</button><a href="/favorite">fav</a></div>
+                    {this.props.recherche === true ? <div className="addFav"><a onClick={() => this.submitForm()}>{ this.state.favON === false ?<RiStarSLine style={{fontSize:"2rem"}}/> : <RiStarSFill style={{fontSize:"2rem"}}/>}</a></div>
                         : null}
                     <div className="position__information-date">
                         <h2>{this.format(0, "long")}</h2>

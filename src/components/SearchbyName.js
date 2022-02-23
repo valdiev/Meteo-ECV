@@ -54,16 +54,14 @@ export default class SearchbyName extends Component{
     render() {
         return (
             <div className="formulaire">
-                <App/>
                 <hr/>
                 <div className="form_indiv">
-                    <label htmlFor="nom">Ville</label>
-                    <input type="text" id="ville" name="ville" value={this.state.ville} onChange={this.handleChange} required />
+                    <input type="text" id="ville" name="ville" value={this.state.ville} onChange={this.handleChange} placeholder="Choisissez une ville" required />
+                    <button onClick={() => this.submitForm()}>Envoyer</button>
                 </div>
-                <button onClick={() => this.submitForm()}>Envoyer</button>
                 {this.state.weatherByName ?
                     <Card recherche={true} name={this.state.weatherByName.name} temp={this.state.weatherByName.main.temp} weather={this.state.weatherByName.weather[0].icon} listPrevision={this.state.weatherForecast.daily}/>
-                        : <h1>En attente d'une ville</h1>
+                        : null
                 }
             </div>
         );

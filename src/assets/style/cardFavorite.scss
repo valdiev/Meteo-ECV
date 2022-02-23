@@ -1,3 +1,38 @@
+.favorite_container{
+    .main{
+        header{
+            width: calc(100% - 20%);
+            padding: 1rem 0;
+        }
+    }
+    .favorite__header{
+        padding: 5rem 0;
+        text-align: center;
+        h2 {
+            margin: 2%;
+            font-weight: 400;
+            text-transform: uppercase;
+            font-size: 1rem;
+            &.fav{
+                font-size: 2rem;
+                font-weight: 400;
+            }
+        }
+
+        button.btn_edit{
+            border: none;
+            padding: 0.8em;
+            background: #F96;
+            border-radius: 3px;
+            color: white;
+            font-weight: bold;
+            margin: 0 0 1em;
+            &.active{
+                background-color: #8cc152;
+            }
+        }
+    }
+}
 .favorite {
     &__grid {
         display: grid;
