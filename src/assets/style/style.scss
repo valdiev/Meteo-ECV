@@ -20,6 +20,27 @@ p {
 
 header {
     position: fixed;
+    width: 60%;
+    padding: 1rem 5rem;
+
+    nav {
+        ul {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            li {
+                list-style: none;
+
+                a {
+                    text-decoration: none;
+                    font-family: 'Montserrat', sans-serif;
+                    font-size: .8rem;
+                    color: #000;
+                }
+            }
+        }
+    }
 }
 
 .container {
@@ -35,12 +56,13 @@ header {
     &__information {
         flex: 60%;
         background-color: #fff;
-        padding: 6rem 5rem;
+        padding: 6rem 5rem 3rem;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
         gap: .2rem;
+        overflow: hidden;
 
         &-date {
             h2 {
@@ -67,6 +89,9 @@ header {
         &-prevision {
             display: flex;
             gap: 2rem;
+            width: 100%;
+            overflow-x: scroll;
+            padding-bottom: 1.5rem;
 
             h4 {
                 font-size: .8rem;
@@ -115,17 +140,7 @@ header {
 @media screen and (max-width: 1024px) {
     .position {
         &__information {
-            flex: unset;
-            width: 60%;
-            overflow: hidden;
             padding: 5rem 4rem;
-
-            &-prevision {
-                width: 100%;
-                overflow-x: scroll;
-                padding-bottom: 1.5rem;
-            }
-
         }
     }
 }
