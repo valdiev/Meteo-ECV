@@ -1,4 +1,27 @@
 .favorite_container{
+    &.active{
+        .favorite__header{
+            button.btn_edit{
+                background-color: #8cc152;
+            }
+        }
+        .favorite__grid{
+            .favorite__grid-information{
+
+                animation: twerk .3s infinite;
+
+                @keyframes twerk {
+                    0%{transform: rotate(0deg)}
+                    33%{transform: rotate(-.5deg)}
+                    66%{transform: rotate(.5deg)}
+                    99.99%{transform: rotate(0deg)}
+                }
+                .delete-btn {
+                    display: block;
+                }
+            }
+        }
+    }
     .main{
         header{
             width: calc(100% - 20%);
@@ -27,9 +50,6 @@
             color: white;
             font-weight: bold;
             margin: 0 0 1em;
-            &.active{
-                background-color: #8cc152;
-            }
         }
     }
 }
@@ -46,20 +66,6 @@
             color: #fff;
             width: 100%;
             position: relative;
-
-            &.active {
-                animation: twerk .3s infinite;
-
-                @keyframes twerk {
-                    0%{transform: rotate(0deg)}
-                    33%{transform: rotate(-.5deg)}
-                    66%{transform: rotate(.5deg)}
-                    99.99%{transform: rotate(0deg)}
-                }
-                .delete-btn {
-                    display: block;
-                }
-            }
 
             .delete-btn {
                 width: 40px;

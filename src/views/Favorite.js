@@ -9,7 +9,8 @@ class Favorite extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            listOfFavorite: [{ ville: "Lille", temp: 12, daily: null }],
+            listOfFavorite: [],
+            editFav : false,
         };
     }
 
@@ -39,12 +40,13 @@ class Favorite extends Component {
     }
     render() {
         return (
-            <main className="favorite container favorite_container">
+            <main className={this.state.editFav === true ? "favorite container favorite_container active": "favorite container favorite_container" } onClick={() => this.setState({
+                editFav : !this.state.editFav,})}>
                 <App />
                 <div className="favorite__header">
                     <h2 className="fav">Mes favoris</h2>
                     <h2>{this.format(0,"long")}</h2>
-                    <button className="btn_edit" onClick={() => this.editFavorite()}>Modifier mes favoris</button>
+                    <button className="btn_edit">Modifier mes favoris</button>
                 </div>
                 <section className="favorite__grid">
                     {this.state.listOfFavorite ? this.state.listOfFavorite.map((user, index) => {
