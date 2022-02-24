@@ -3,9 +3,252 @@ import {createSlice, current} from "@reduxjs/toolkit";
 export const favoriteSlice = createSlice({
     name: 'favorite',
     initialState: {
-        listOfFavorite: [{ville: "Oignies", temp: 10, daily: null, weather: "02n"},
-            {ville: "Sydney", temp: 24, daily: null, weather: "09d"},
-            {ville: "New York", temp: 12, daily: null, weather: "50d"}]
+        listOfFavorite: [{ville: "Oignies", temp: 10, daily: [
+                {
+                    "temp": {
+                        "day": 12,
+                    },
+                    "weather": [
+                        {
+                            "icon": "01d"
+                        }
+                    ],
+                },
+                {
+                    "temp": {
+                        "day": 8.32,
+                    },
+                    "weather": [
+                        {
+                            "icon": "10d"
+                        }
+                    ],
+                },
+                {
+                    "temp": {
+                        "day": 25,
+                    },
+                    "weather": [
+                        {
+                            "icon": "50n"
+                        }
+                    ],
+                },
+                {
+                    "temp": {
+                        "day": 69,
+                    },
+                    "weather": [
+                        {
+                            "icon": "04d"
+                        }
+                    ],
+                },
+                {
+                    "temp": {
+                        "day": 2,
+                    },
+                    "weather": [
+                        {
+                            "icon": "01d"
+                        }
+                    ],
+                },
+                {
+                    "temp": {
+                        "day": 10,
+                    },
+                    "weather": [
+                        {
+                            "icon": "03d"
+                        }
+                    ],
+                },
+                {
+                    "temp": {
+                        "day": 6,
+                    },
+                    "weather": [
+                        {
+                            "icon": "09d"
+                        }
+                    ],
+                },
+                {
+                    "temp": {
+                        "day": 8.32,
+                    },
+                    "weather": [
+                        {
+                            "icon": "10d"
+                        }
+                    ],
+                },
+            ], weather: "02n"},
+            {ville: "Sydney", temp: 24, daily: [
+                    {
+                        "temp": {
+                            "day": 12,
+                        },
+                        "weather": [
+                            {
+                                "icon": "01d"
+                            }
+                        ],
+                    },
+                    {
+                        "temp": {
+                            "day": 8.32,
+                        },
+                        "weather": [
+                            {
+                                "icon": "10d"
+                            }
+                        ],
+                    },
+                    {
+                        "temp": {
+                            "day": 25,
+                        },
+                        "weather": [
+                            {
+                                "icon": "50n"
+                            }
+                        ],
+                    },
+                    {
+                        "temp": {
+                            "day": 69,
+                        },
+                        "weather": [
+                            {
+                                "icon": "04d"
+                            }
+                        ],
+                    },
+                    {
+                        "temp": {
+                            "day": 2,
+                        },
+                        "weather": [
+                            {
+                                "icon": "01d"
+                            }
+                        ],
+                    },
+                    {
+                        "temp": {
+                            "day": 10,
+                        },
+                        "weather": [
+                            {
+                                "icon": "03d"
+                            }
+                        ],
+                    },
+                    {
+                        "temp": {
+                            "day": 6,
+                        },
+                        "weather": [
+                            {
+                                "icon": "09d"
+                            }
+                        ],
+                    },
+                    {
+                        "temp": {
+                            "day": 8.32,
+                        },
+                        "weather": [
+                            {
+                                "icon": "10d"
+                            }
+                        ],
+                    },
+                ], weather: "09d"},
+            {ville: "New York", temp: 12, daily: [
+                    {
+                        "temp": {
+                            "day": 12,
+                        },
+                        "weather": [
+                            {
+                                "icon": "01d"
+                            }
+                        ],
+                    },
+                    {
+                        "temp": {
+                            "day": 8.32,
+                        },
+                        "weather": [
+                            {
+                                "icon": "10d"
+                            }
+                        ],
+                    },
+                    {
+                        "temp": {
+                            "day": 25,
+                        },
+                        "weather": [
+                            {
+                                "icon": "50n"
+                            }
+                        ],
+                    },
+                    {
+                        "temp": {
+                            "day": 69,
+                        },
+                        "weather": [
+                            {
+                                "icon": "04d"
+                            }
+                        ],
+                    },
+                    {
+                        "temp": {
+                            "day": 2,
+                        },
+                        "weather": [
+                            {
+                                "icon": "01d"
+                            }
+                        ],
+                    },
+                    {
+                        "temp": {
+                            "day": 10,
+                        },
+                        "weather": [
+                            {
+                                "icon": "03d"
+                            }
+                        ],
+                    },
+                    {
+                        "temp": {
+                            "day": 6,
+                        },
+                        "weather": [
+                            {
+                                "icon": "09d"
+                            }
+                        ],
+                    },
+                    {
+                        "temp": {
+                            "day": 8.32,
+                        },
+                        "weather": [
+                            {
+                                "icon": "10d"
+                            }
+                        ],
+                    },
+                ], weather: "50d"}]
     },
     reducers:{
         addFavorite: (state,action) => {
