@@ -5,7 +5,6 @@ const meteoRepository = {
         try {
             const data = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&units=metric&exclude=hourly,minutely&appid=${API_KEY}`);
             const listData = await data.json()
-            console.log(listData);
             return listData
         } catch (err) {
             console.log("error" + err);

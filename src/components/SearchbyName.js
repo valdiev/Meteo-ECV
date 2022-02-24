@@ -48,7 +48,6 @@ export default class SearchbyName extends Component{
             temp: this.state.weatherByName.main.temp,
             weatherForecast: await meteoRepository.getWeatherOneCall(this.state.weatherByName.coord.lat,this.state.weatherByName.coord.lon)
         });
-        // console.log(this.state.weatherForecast);
         this.state.ville = "";
     }
 

@@ -29,7 +29,6 @@ class Favorite extends Component {
         this.state.listOfFavorite.forEach((favorite,index) => {
 
             if(favorite.ville == id) {
-                console.log(index)
                 const result = array.filter(item => item.ville != favorite.ville)
                 array = result
             }
@@ -44,15 +43,20 @@ class Favorite extends Component {
             <main className={this.state.editFav === true ? "favorite container favorite_container active": "favorite container favorite_container" }>
                 <App />
                 <div className="favorite__header">
+                    {this.state.listOfFavorite.length != 0 ? <div>
                     <h2 className="fav">Mes favoris</h2>
                     <h2>{this.format(0,"long")}</h2>
                     <button className="btn_edit" onClick={() => this.setState({
-                editFav : !this.state.editFav,})}>Modifier mes favoris</button>
+                editFav : !this.state.editFav,})}>Modifier mes favoris</button></div> : <div>
+                        <h2 className="fav">Vous n'avez pas de favoris</h2>
+                        <h2>{this.format(0,"long")}</h2>
+                        <a className="btn_edit" href="/search">Rechercher une ville</a></div> }
                 </div>
                 <section className="favorite__grid">
-                    {this.state.listOfFavorite ? this.state.listOfFavorite.map((user, index) => {
+                    {this.state.listOfFavorite.length != 0 ? this.state.listOfFavorite.map((user, index) => {
                         return <CardFavorite ville={user.ville} temp={user.temp} daily={user.daily} weather={user.weather} deleteClick={this.deleteFavorite.bind(this, user.ville)}/>
-                    }) : null}
+                    }) : null
+                    }
                 </section>
             </main>
         );

@@ -1,8 +1,13 @@
 .favorite_container{
     &.active{
         .favorite__header{
-            button.btn_edit{
+            .btn_edit{
+                margin: 0 auto;
+                width: fit-content;
+                display: block;
+                text-decoration: none;
                 background-color: #8cc152;
+                font-size: 0.8rem;
             }
         }
         .favorite__grid{
@@ -19,6 +24,16 @@
                 .delete-btn {
                     display: block;
                 }
+            }
+        }
+
+        .listEmpty{
+            width: 100%;
+            text-align: center;
+            h1{
+                font-weight: 400;
+                text-transform: uppercase;
+                font-size: 1rem;
             }
         }
     }
@@ -42,8 +57,9 @@
             }
         }
 
-        button.btn_edit{
+        .btn_edit{
             border: none;
+            font-size: 0.8rem;
             padding: 0.8em;
             background: #F96;
             border-radius: 3px;

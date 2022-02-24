@@ -53,8 +53,7 @@ class Card extends Component {
             <main className="position">
                 <App />
                 <div className="position__information container">
-                    {this.props.recherche === true ? <div className="addFav"><a onClick={() => this.submitForm()}>{ this.state.favON === false ?<RiStarSLine style={{fontSize:"2rem"}}/> : <RiStarSFill style={{fontSize:"2rem"}}/>}</a></div>
-                        : null}
+                    <div className="addFav"><a onClick={() => this.submitForm()}>{ this.state.favON === false ?<RiStarSLine style={{fontSize:"2rem"}}/> : <RiStarSFill style={{fontSize:"2rem"}}/>}</a></div>
                     <div className="position__information-date">
                         <h2>{this.format(0, "long")}</h2>
                     </div>

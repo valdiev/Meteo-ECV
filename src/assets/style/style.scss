@@ -19,6 +19,7 @@ p {
 }
 header {
     position: fixed;
+    z-index: 99;
     width: 60%;
     padding: 1rem 5rem;
 
@@ -54,6 +55,7 @@ header {
     display: flex;
 
     &__information {
+        position: relative;
         flex: 60%;
         background-color: #fff;
         padding: 6rem 5rem 3rem;
@@ -64,12 +66,8 @@ header {
         gap: .2rem;
         overflow: hidden;
         div.addFav{
-            width: 100%;
-            text-align: right;
-            a {
-                border: none;
-                cursor: pointer;
-            }
+            position: absolute;
+            right: 9%;
         }
         &-date {
             h2 {
