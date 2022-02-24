@@ -18,41 +18,40 @@ class Favorite extends Component {
         this.setState({ listOfFavorite: this.props.listOfFavorite });
     }
 
-    editFavorite() {
-        let items = document.querySelectorAll(".favorite__grid .favorite__grid-information");
-        let btnEdit = document.querySelector(".favorite__header .btn_edit");
-        items.forEach((item) => {
-            item.classList.toggle("active");
-            btnEdit.classList.toggle("active");
-            if (btnEdit.classList.contains("active")) {
-                btnEdit.innerHTML = "Confirmer mes modifications"
-            }
-            else{
-                btnEdit.innerHTML = "Modifier mes favoris"
-            }
-        });
-    }
-
     format(days, format) {
             let options = { weekday: 'long', month: 'long', day: 'numeric' }
             return new Date().toLocaleDateString([], options);
 
     }
+
+    deleteFavorite = (id) => {
+        let array = [...this.state.listOfFavorite];
+        this.state.listOfFavorite.forEach((favorite,index) => {
+
+            if(favorite.ville == id) {
+                console.log(index)
+                const result = array.filter(item => item.ville != favorite.ville)
+                array = result
+            }
+        })
+
+        this.setState({
+            listOfFavorite: array
+        })
+    }
     render() {
         return (
-            <main className={this.state.editFav === true ? "favorite container favorite_container active": "favorite container favorite_container" } onClick={() => this.setState({
-                editFav : !this.state.editFav,})}>
+            <main className={this.state.editFav === true ? "favorite container favorite_container active": "favorite container favorite_container" }>
                 <App />
                 <div className="favorite__header">
                     <h2 className="fav">Mes favoris</h2>
                     <h2>{this.format(0,"long")}</h2>
-                    <button className="btn_edit">Modifier mes favoris</button>
+                    <button className="btn_edit" onClick={() => this.setState({
+                editFav : !this.state.editFav,})}>Modifier mes favoris</button>
                 </div>
                 <section className="favorite__grid">
                     {this.state.listOfFavorite ? this.state.listOfFavorite.map((user, index) => {
-                        console.log(user.daily)
-                        console.log(this.state.listOfFavorite)
-                        return <CardFavorite ville={user.ville} temp={user.temp} daily={user.daily} weather={user.weather} />
+                        return <CardFavorite ville={user.ville} temp={user.temp} daily={user.daily} weather={user.weather} deleteClick={this.deleteFavorite.bind(this, user.ville)}/>
                     }) : null}
                 </section>
             </main>

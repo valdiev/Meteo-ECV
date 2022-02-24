@@ -29,6 +29,11 @@ class CardFavorite extends Component {
         return dt;
     }
 
+    deleteFavorite = () => {
+        // console.log("Delete button");
+        this.props.deleteClick();
+    }
+
 
     render() {
         return (
@@ -50,7 +55,7 @@ class CardFavorite extends Component {
                     }) : null}
                 </div>
                 <div className="favorite__grid-information-image" style={{ backgroundImage: `url(/img/${this.props.weather}.jpg)` }}></div>
-                <button className="delete-btn">X</button>
+                <button className="delete-btn" onClick={this.deleteFavorite}>X</button>
             </article>
         );
     }
