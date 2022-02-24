@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { addFavorite } from "../store/reducers/favoriteReducer";
+import {addFavorite, deleteFavorite} from "../store/reducers/favoriteReducer";
 import { connect } from "react-redux";
 import App from "../App";
 import {RiStarSLine,RiStarSFill} from "react-icons/ri";
@@ -36,24 +36,43 @@ class Card extends Component {
 
     submitForm() {
         this.props.addFavorite({ ville: this.props.name, temp: this.props.temp, daily: this.props.listPrevision, weather: this.props.weather });
-        if(this.state.favON === false) {
-            this.setState({
-                favON: true,
-            });
-        }
-        else{
-            this.setState({
-                favON: false,
-            });
-        }
-
+        this.setState({
+            favON: true,
+        });
     }
+    deleteClick(){
+        this.setState({
+            favON: false,
+        });
+        let currentVille = this.props.name;
+        let index = 0;
+        this.state.listOfFavorite.forEach(function(items,i){
+            if(currentVille === items.ville){
+                index = i;
+            }
+        })
+        this.props.deleteFavorite(index);
+    }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(prevProps.listOfFavorite !== this.props.listOfFavorite){
+            this.setState({
+                listOfFavorite : this.props.listOfFavorite
+            })
+            return true
+        }
+        return false
+    }
+
     render() {
         return (
             <main className="position">
                 <App />
                 <div className="position__information container">
-                    <div className="addFav"><a onClick={() => this.submitForm()}>{ this.state.favON === false ?<RiStarSLine style={{fontSize:"2rem"}}/> : <RiStarSFill style={{fontSize:"2rem"}}/>}</a></div>
+                    <div className="addFav">
+                        { this.state.favON === false ?
+                            <a onClick={() => this.submitForm()}><RiStarSLine style={{fontSize:"2rem"}}/></a>
+                            : <a onClick={() => this.deleteClick()}><RiStarSFill style={{fontSize:"2rem"}}/></a>}
+                    </div>
                     <div className="position__information-date">
                         <h2>{this.format(0, "long")}</h2>
                     </div>
@@ -86,7 +105,8 @@ class Card extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        addFavorite: (favorite) => dispatch(addFavorite(favorite))
+        addFavorite: (favorite) => dispatch(addFavorite(favorite)),
+        deleteFavorite: (favorite) => dispatch(deleteFavorite(favorite))
     }
 };
 

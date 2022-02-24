@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { addFavorite } from "../store/reducers/favoriteReducer";
+import {addFavorite, deleteFavorite} from "../store/reducers/favoriteReducer";
 import { connect } from "react-redux";
 
 class CardFavorite extends Component {
@@ -29,11 +29,9 @@ class CardFavorite extends Component {
         return dt;
     }
 
-    deleteFavorite = () => {
-        // console.log("Delete button");
-        this.props.deleteClick();
+    deleteClick(index){
+        this.props.deleteFavorite(index);
     }
-
 
     render() {
         return (
@@ -45,7 +43,7 @@ class CardFavorite extends Component {
 
                 <div className="favorite__grid-information-prevision">
                     {this.props.daily ? this.props.daily.map((jour, index) => {
-                        return <div className="favorite__grid-information-prevision-day">
+                        return <div key={index} className="favorite__grid-information-prevision-day">
                             <h4>{this.format(index + 1, "court")}</h4>
                             <span className="icon">
                                 <img src={`./img/svg/white/${jour.weather[0].icon}.svg`} />
@@ -54,8 +52,8 @@ class CardFavorite extends Component {
                         </div>
                     }) : null}
                 </div>
-                <div className="favorite__grid-information-image" style={{ backgroundImage: `url(/img/${this.props.weather}.jpg)` }}></div>
-                <button className="delete-btn" onClick={this.deleteFavorite}>X</button>
+                <div className="favorite__grid-information-image" style={{ backgroundImage: `url(/img/${this.props.weather}.jpg)`}}></div>
+                <button className="delete-btn" onClick={()=>this.deleteClick(this.props.index)}>X</button>
             </article>
         );
     }
@@ -63,7 +61,8 @@ class CardFavorite extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        addFavorite: (favorite) => dispatch(addFavorite(favorite))
+        addFavorite: (favorite) => dispatch(addFavorite(favorite)),
+        deleteFavorite: (favorite) => dispatch(deleteFavorite(favorite))
     }
 };
 

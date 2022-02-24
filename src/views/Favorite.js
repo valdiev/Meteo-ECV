@@ -24,26 +24,22 @@ class Favorite extends Component {
 
     }
 
-    deleteFavorite = (id) => {
-        let array = [...this.state.listOfFavorite];
-        this.state.listOfFavorite.forEach((favorite,index) => {
-
-            if(favorite.ville == id) {
-                const result = array.filter(item => item.ville != favorite.ville)
-                array = result
-            }
-        })
-
-        this.setState({
-            listOfFavorite: array
-        })
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(prevProps.listOfFavorite !== this.props.listOfFavorite){
+            this.setState({
+                listOfFavorite : this.props.listOfFavorite
+            })
+            return true
+        }
+        return false
     }
+
     render() {
         return (
             <main className={this.state.editFav === true ? "favorite container favorite_container active": "favorite container favorite_container" }>
                 <App />
                 <div className="favorite__header">
-                    {this.state.listOfFavorite.length != 0 ? <div>
+                    {this.state.listOfFavorite.length !== 0 ? <div>
                     <h2 className="fav">Mes favoris</h2>
                     <h2>{this.format(0,"long")}</h2>
                     <button className="btn_edit" onClick={() => this.setState({
@@ -53,8 +49,8 @@ class Favorite extends Component {
                         <a className="btn_edit" href="/search">Rechercher une ville</a></div> }
                 </div>
                 <section className="favorite__grid">
-                    {this.state.listOfFavorite.length != 0 ? this.state.listOfFavorite.map((user, index) => {
-                        return <CardFavorite ville={user.ville} temp={user.temp} daily={user.daily} weather={user.weather} deleteClick={this.deleteFavorite.bind(this, user.ville)}/>
+                    {this.state.listOfFavorite.length !== 0 ? this.state.listOfFavorite.map((user, index) => {
+                        return <CardFavorite index={index} key={index} ville={user.ville} temp={user.temp} daily={user.daily} weather={user.weather} />
                     }) : null
                     }
                 </section>
@@ -65,7 +61,7 @@ class Favorite extends Component {
 
 const mapStateToProps = state => {
     return {
-        listOfFavorite: state.favorite.listOfFavorite
+        listOfFavorite: state.favorite.listOfFavorite,
     }
 }
 

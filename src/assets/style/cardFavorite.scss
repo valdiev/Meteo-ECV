@@ -71,6 +71,7 @@
 }
 .favorite {
     &__grid {
+        margin-bottom: 5%;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: 1fr;

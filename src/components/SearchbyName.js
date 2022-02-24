@@ -46,14 +46,11 @@ export default class SearchbyName extends Component{
         this.setState({
             ...this.state,
             temp: this.state.weatherByName.main.temp,
-            weatherForecast: await meteoRepository.getWeatherOneCall(this.state.weatherByName.coord.lat,this.state.weatherByName.coord.lon)
+            weatherForecast: await meteoRepository.getWeatherOneCall(this.state.weatherByName.coord.lat, this.state.weatherByName.coord.lon)
         });
         this.state.ville = "";
     }
-
-
-
-    render() {
+    render(){
         return (
             <div className="formulaire">
                 {this.state.weatherByName ?
@@ -62,7 +59,7 @@ export default class SearchbyName extends Component{
                     <div className="search_beginning">
                         <Loader />
                         <div className="form__group field">
-                            <input autoComplete="off" type="text" className="form__field"  name="ville" id='ville' placeholder={this.state.ville} onChange={this.handleChange}
+                            <input onKeyUp={(event) => { if(event.key === 'Enter') this.submitForm();}} autoComplete="off" type="text" className="form__field"  name="ville" id='ville' placeholder={this.state.ville} onChange={this.handleChange}
                                    required/>
                             <label htmlFor="name" className="form__label">Choisissez une ville</label>
                             <button onClick={() => this.submitForm()}>Envoyer</button>
