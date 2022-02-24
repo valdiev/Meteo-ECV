@@ -3,6 +3,9 @@ import meteoRepository from "../repository/meteoRepository";
 import Card from "./Card";
 import App from "../App";
 
+import Loader from './Loader';
+
+
 export default class SearchbyName extends Component{
     constructor(props) {
         super(props);
@@ -54,14 +57,18 @@ export default class SearchbyName extends Component{
     render() {
         return (
             <div className="formulaire">
-                <hr/>
-                <div className="form_indiv">
-                    <input type="text" id="ville" name="ville" value={this.state.ville} onChange={this.handleChange} placeholder="Choisissez une ville" required />
-                    <button onClick={() => this.submitForm()}>Envoyer</button>
-                </div>
                 {this.state.weatherByName ?
                     <Card recherche={true} name={this.state.weatherByName.name} temp={this.state.weatherByName.main.temp} weather={this.state.weatherByName.weather[0].icon} listPrevision={this.state.weatherForecast.daily}/>
-                        : null
+                        :
+                    <div className="search_beginning">
+                        <Loader />
+                        <div className="form__group field">
+                            <input autoComplete="off" type="text" className="form__field"  name="ville" id='ville' placeholder={this.state.ville} onChange={this.handleChange}
+                                   required/>
+                            <label htmlFor="name" className="form__label">Choisissez une ville</label>
+                            <button onClick={() => this.submitForm()}>Envoyer</button>
+                        </div>
+                    </div>
                 }
             </div>
         );

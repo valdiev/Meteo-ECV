@@ -4,7 +4,6 @@ import './assets/style/loader.scss';
 import './assets/style/search.scss';
 import {useEffect, useState} from "react";
 import {Link, Outlet} from "react-router-dom";
-import {BsHouse} from "react-icons/bs";
 import {RiStarSFill} from "react-icons/ri"
 import {BsSearch} from "react-icons/bs"
 
@@ -14,11 +13,8 @@ function App() {
             <header>
                 <nav className="menu">
                     <ul>
-                        <li><Link className="link" to="/"><BsHouse style={{fontSize:"1.7rem"}}/></Link></li>
-                        <div className="left">
-                            <li><Link className="link" to="/favorite"><RiStarSFill style={{fontSize:"2em"}}/></Link></li>
-                            <li><Link className="link" to="/search"><BsSearch style={{fontSize: '1.7rem'}}/></Link></li>
-                        </div>
+                        <li><a className="link" href="/search">Recherche une ville</a></li>
+                        <li><Link className="link" to="/favorite"><p>Liste des favoris</p></Link></li>
                     </ul>
                 </nav>
                 <Outlet/>
