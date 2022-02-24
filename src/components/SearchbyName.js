@@ -14,6 +14,7 @@ export default class SearchbyName extends Component{
             weatherByName: '',
             weatherForecast: '',
             temp: '',
+            err: "",
         }
         this.handleChange = this.handleChange.bind(this);
     }
@@ -39,16 +40,34 @@ export default class SearchbyName extends Component{
         return dt;
     }
     async submitForm() {
-        this.setState({
-            ...this.state,
-            weatherByName: await meteoRepository.getWeatherByCityName(this.state.ville),
-        });
-        this.setState({
-            ...this.state,
-            temp: this.state.weatherByName.main.temp,
-            weatherForecast: await meteoRepository.getWeatherOneCall(this.state.weatherByName.coord.lat,this.state.weatherByName.coord.lon)
-        });
-        this.state.ville = "";
+        try{
+            this.setState({
+                ...this.state,
+                weatherByName: await meteoRepository.getWeatherByCityName(this.state.ville),
+            });
+            this.setState({
+                ...this.state,
+                temp: this.state.weatherByName.main.temp,
+                weatherForecast: await meteoRepository.getWeatherOneCall(this.state.weatherByName.coord.lat,this.state.weatherByName.coord.lon)
+            });
+            this.state.ville = "";
+        }
+        catch (err){
+
+            this.setState({
+                ...this.state,
+                weatherByName: await meteoRepository.getWeatherByCityName("lille"),
+            });
+            this.setState({
+                ...this.state,
+                temp: this.state.weatherByName.main.temp,
+                weatherForecast: await meteoRepository.getWeatherOneCall(this.state.weatherByName.coord.lat,this.state.weatherByName.coord.lon)
+            });
+            this.state.ville = "";
+            // this.setState({
+            //     err : true,
+            // });
+        }
     }
 
 
@@ -57,13 +76,12 @@ export default class SearchbyName extends Component{
         return (
             <div className="formulaire">
                 {this.state.weatherByName ?
-                    <Card recherche={true} name={this.state.weatherByName.name} temp={this.state.weatherByName.main.temp} weather={this.state.weatherByName.weather[0].icon} listPrevision={this.state.weatherForecast.daily}/>
+                    <Card recherche={true} name={this.state.weatherByName.name} temp={this.state.weatherByName.main.temp} weather={this.state.weatherByName.weather[0].icon} listPrevisionDays={this.state.weatherForecast.daily}/>
                         :
                     <div className="search_beginning">
                         <Loader />
                         <div className="form__group field">
-                            <input autoComplete="off" type="text" className="form__field"  name="ville" id='ville' placeholder={this.state.ville} onChange={this.handleChange}
-                                   required/>
+                            <input autoComplete="off" type="text" className="form__field"  name="ville" id='ville' placeholder={this.state.ville} onChange={this.handleChange} />
                             <label htmlFor="name" className="form__label">Choisissez une ville</label>
                             <button onClick={() => this.submitForm()}>Envoyer</button>
                         </div>

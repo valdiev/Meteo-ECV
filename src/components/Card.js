@@ -62,7 +62,7 @@ class Card extends Component {
                         <h3>{Math.floor(this.props.temp)}°</h3>
                     </div>
                     <div className="position__information-prevision">
-                        {this.props.listPrevision != null ? this.props.listPrevision.map((jour, index) => {
+                        {this.props.listPrevisionDays != null ? this.props.listPrevisionDays.map((jour, index) => {
                             return <div className="position__information-prevision-day">
                                 <h4>{this.format(index + 1, "court")}</h4>
                                 <span className="icon">
@@ -73,6 +73,14 @@ class Card extends Component {
                                     </picture>
                                 </span>
                                 <span>{Math.floor(jour.temp.day)}°</span>
+                            </div>
+                        }) : null}
+                    </div>
+                    <div className="hourly">
+
+                        {this.props.listPrevisionHours != null ? this.props.listPrevisionHours.map((hours, index) => {
+                            return <div className="position__information-prevision-day">
+                                <h4>{hours.temp}</h4>
                             </div>
                         }) : null}
                     </div>

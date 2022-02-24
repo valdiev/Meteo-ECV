@@ -28,7 +28,7 @@ export default class Homepage extends Component{
                     weather: await meteoRepository.getWeather(latitude,longitude),
                     weatherForecast: await meteoRepository.getWeatherOneCall(latitude, longitude)
                 });
-                console.log(this.state.weatherForecast.daily);
+                console.log(this.state.weatherForecast);
             });
 
             
@@ -39,7 +39,7 @@ export default class Homepage extends Component{
         return (
             <div>
                 {this.state.weather ?
-                    <Card name={this.state.weather.name} temp={this.state.weather.main.temp} weather={this.state.weather.weather[0].icon} listPrevision={this.state.weatherForecast.daily}/>
+                    <Card name={this.state.weather.name} temp={this.state.weather.main.temp} weather={this.state.weather.weather[0].icon} listPrevisionDays={this.state.weatherForecast.daily} listPrevisionHours={this.state.weatherForecast.hourly}/>
                     : <Loader />
                 }
             </div>
