@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import Home from "./views/Home";
-import Search from "./views/Search";
 import Favorite from "./views/Favorite";
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route} from "react-router-dom";
@@ -18,7 +17,6 @@ ReactDOM.render(
             <Provider store={store}>
                 <Routes>
                     <Route path="/" element={<Home />}/>
-                    <Route path="search" element={<Search />}/>
                     <Route path="favorite" element={<Favorite />}/>
                 </Routes>
             </Provider>

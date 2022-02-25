@@ -51,7 +51,7 @@ class CardFavorite extends Component {
                 <div style={{ overflow: "hidden" }}>
                     <div className={this.props.slide ? "favorite__grid-information-container slide" : "favorite__grid-information-container"}>
                         <div className="favorite__grid-information-prevision-week">
-                            {this.props.hourly ? this.props.hourly.map((hour, index) => {
+                            {this.props.hourly ? this.props.hourly.slice(0, 8).map((hour, index) => {
                                 return (
                                     <div key={index} className="favorite__grid-information-prevision-day">
                                         <h4>{this.addHours(index + 1)}:00</h4>

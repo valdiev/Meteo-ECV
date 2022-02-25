@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import meteoRepository from "../repository/meteoRepository";
 import Loader from './Loader';
 import App from "../App";
@@ -9,40 +10,72 @@ export default class Homepage extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            lat : "tt",
-            long : "",
             weather: "",
             weatherForecast: "",
             ville: "",
+            weatherByName: "",
+            temp: "",
+            search: false,
+            searchBar: false,
         }
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(value) {
+        this.setState({ [value.target.name]: value.target.value })
     }
     async componentDidMount(){
-        if ("geolocation" in navigator) {
+        if ("geolocation" in navigator && this.state.search===false) {
             navigator.geolocation.getCurrentPosition(async (position) => {
-                const latitude = position.coords.latitude;
-                const longitude = position.coords.longitude;
                 this.setState({
                     ...this.state,
-                    lat: latitude,
-                    long : longitude,
-                    weather: await meteoRepository.getWeather(latitude,longitude),
-                    weatherForecast: await meteoRepository.getWeatherOneCall(latitude, longitude)
+                    weather: await meteoRepository.getWeather(position.coords.latitude,position.coords.longitude),
+                    weatherForecast: await meteoRepository.getWeatherOneCall(position.coords.latitude, position.coords.longitude)
                 });
-                console.log(this.state.weatherForecast);
             });
-
-            
         }
     }
+
+    async submitForm() {
+        try{
+            this.setState({
+                ...this.state,
+                weather: await meteoRepository.getWeatherByCityName(this.state.ville),
+                search: true,
+            });
+            this.setState({
+                ...this.state,
+                temp: this.state.weather.main.temp,
+                weatherForecast: await meteoRepository.getWeatherOneCall(this.state.weather.coord.lat, this.state.weather.coord.lon)
+            });
+            this.state.ville = "";
+            document.querySelector(".form__group").classList.remove("active");
+        }
+        catch (err){
+            console.log(err);
+            window.location.pathname="/"
+            document.querySelector(".form__group").classList.remove("active");
+        }
+    }
+
 
     render() {
         return (
-            <div>
-                {this.state.weather ?
-                    <Card name={this.state.weather.name} temp={this.state.weather.main.temp} weather={this.state.weather.weather[0].icon} listPrevisionDays={this.state.weatherForecast.daily} listPrevisionHours={this.state.weatherForecast.hourly}/>
+            <>
+                <div className={this.props.searchBar ? "form__group field active" :"form__group field" } >
+                    {console.log(this.props.searchBar)}
+                    <div className="form">
+                        <label htmlFor="name" className="form__label">Choisissez une ville</label>
+                        <input onKeyUp={(event) => { if(event.key === 'Enter') this.submitForm();}} autoComplete="off" type="text" className="form__field"  name="ville" id='ville' placeholder={this.state.ville} onChange={this.handleChange}
+                            required/>
+                        <button className="searchBtn" onClick={() => this.submitForm()}>Envoyer</button>
+                    </div>
+                </div>
+                {this.state.weatherForecast ?
+                    <Card name={this.state.weather.name} temp={this.state.weather.main.temp} weather={this.state.weather.weather[0].icon} listPrevisionDays={this.state.weatherForecast.daily} listPrevisionHours={this.state.weatherForecast.hourly} searchBar={this.state.searchBar}/>
                     : <Loader />
                 }
-            </div>
+            </>
         );
     }
 }
