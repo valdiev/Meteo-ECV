@@ -14,7 +14,9 @@ function App() {
             <header>
                 <nav className="menu">
                     <ul>
-                        <li><a className="link" href="/search">Recherche une ville</a></li>
+                        <li><p onClick={(event) => {
+                            document.querySelector(".form__group").classList.add("active")
+                        }}>Recherche une ville</p></li>
                         <li><Link className="link" to="/favorite">Liste des favoris</Link></li>
                     </ul>
                 </nav>

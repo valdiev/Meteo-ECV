@@ -38,11 +38,11 @@ class Card extends Component {
 
     submitForm() {
         let modal = document.querySelector(".modal")
-        this.props.addFavorite({ ville: this.props.name, temp: this.props.temp, daily: this.props.listPrevisionDays, weather: this.props.weather });
         this.setState({
             favON: true,
             etat: "ajoutée aux",
         });
+        this.props.addFavorite({ ville: this.props.name, temp: this.props.temp, daily: this.props.listPrevisionDays, weather: this.props.weather, alreadyFav : this.state.favON });
         modal.classList.add("active");
         setTimeout(()=>{
             modal.classList.remove("active");
@@ -53,7 +53,6 @@ class Card extends Component {
         let currentDate = new Date(Date.now() + index * (3600*1000));
         let currentHours = currentDate.getHours();
         return currentHours
-
     }
     deleteClick(){
         this.setState({

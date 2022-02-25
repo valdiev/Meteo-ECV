@@ -33,6 +33,13 @@ header {
             }
             li {
                 list-style: none;
+                p{
+                    font-family: 'Montserrat', sans-serif;
+                    font-size: .8rem;
+                    color: #000;
+                    position: relative;
+                    cursor: pointer;
+                }
                 a {
                     text-decoration: none;
                     font-family: 'Montserrat', sans-serif;
