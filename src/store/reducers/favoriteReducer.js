@@ -84,6 +84,72 @@ export const favoriteSlice = createSlice({
                         }
                     ],
                 },
+            ],
+            hourly: [
+                {
+                    "temp": 2.1,
+                    "weather": [
+                        {
+                            "icon": "01d"
+                        }
+                    ],
+                },
+                {
+                    "temp": 2.1,
+                    "weather": [
+                        {
+                            "icon": "01d"
+                        }
+                    ],
+                },
+                {
+                    "temp": 2.1,
+                    "weather": [
+                        {
+                            "icon": "01d"
+                        }
+                    ],
+                },
+                {
+                    "temp": 2.1,
+                    "weather": [
+                        {
+                            "icon": "01d"
+                        }
+                    ],
+                },
+                {
+                    "temp": 2.1,
+                    "weather": [
+                        {
+                            "icon": "01d"
+                        }
+                    ],
+                },
+                {
+                    "temp": 2.1,
+                    "weather": [
+                        {
+                            "icon": "01d"
+                        }
+                    ],
+                },
+                {
+                    "temp": 2.1,
+                    "weather": [
+                        {
+                            "icon": "01d"
+                        }
+                    ],
+                },
+                {
+                    "temp": 2.1,
+                    "weather": [
+                        {
+                            "icon": "01d"
+                        }
+                    ],
+                }
             ], weather: "02n"},
             {ville: "Sydney", temp: 24, daily: [
                     {
@@ -166,6 +232,72 @@ export const favoriteSlice = createSlice({
                             }
                         ],
                     },
+                ],
+                hourly: [
+                    {
+                        "temp": 2.1,
+                        "weather": [
+                            {
+                                "icon": "01d"
+                            }
+                        ],
+                    },
+                    {
+                        "temp": 2.1,
+                        "weather": [
+                            {
+                                "icon": "01d"
+                            }
+                        ],
+                    },
+                    {
+                        "temp": 2.1,
+                        "weather": [
+                            {
+                                "icon": "01d"
+                            }
+                        ],
+                    },
+                    {
+                        "temp": 2.1,
+                        "weather": [
+                            {
+                                "icon": "01d"
+                            }
+                        ],
+                    },
+                    {
+                        "temp": 2.1,
+                        "weather": [
+                            {
+                                "icon": "01d"
+                            }
+                        ],
+                    },
+                    {
+                        "temp": 2.1,
+                        "weather": [
+                            {
+                                "icon": "01d"
+                            }
+                        ],
+                    },
+                    {
+                        "temp": 2.1,
+                        "weather": [
+                            {
+                                "icon": "01d"
+                            }
+                        ],
+                    },
+                    {
+                        "temp": 2.1,
+                        "weather": [
+                            {
+                                "icon": "01d"
+                            }
+                        ],
+                    }
                 ], weather: "09d"},
             {ville: "New York", temp: 12, daily: [
                     {
@@ -248,6 +380,72 @@ export const favoriteSlice = createSlice({
                             }
                         ],
                     },
+                ],
+                hourly: [
+                    {
+                        "temp": 2.1,
+                        "weather": [
+                            {
+                                "icon": "01d"
+                            }
+                        ],
+                    },
+                    {
+                        "temp": 2.1,
+                        "weather": [
+                            {
+                                "icon": "01d"
+                            }
+                        ],
+                    },
+                    {
+                        "temp": 2.1,
+                        "weather": [
+                            {
+                                "icon": "01d"
+                            }
+                        ],
+                    },
+                    {
+                        "temp": 2.1,
+                        "weather": [
+                            {
+                                "icon": "01d"
+                            }
+                        ],
+                    },
+                    {
+                        "temp": 2.1,
+                        "weather": [
+                            {
+                                "icon": "01d"
+                            }
+                        ],
+                    },
+                    {
+                        "temp": 2.1,
+                        "weather": [
+                            {
+                                "icon": "01d"
+                            }
+                        ],
+                    },
+                    {
+                        "temp": 2.1,
+                        "weather": [
+                            {
+                                "icon": "01d"
+                            }
+                        ],
+                    },
+                    {
+                        "temp": 2.1,
+                        "weather": [
+                            {
+                                "icon": "01d"
+                            }
+                        ],
+                    }
                 ], weather: "50d"}]
     },
     reducers:{

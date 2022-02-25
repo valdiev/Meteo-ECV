@@ -36,7 +36,7 @@ class Card extends Component {
     }
 
     submitForm() {
-        this.props.addFavorite({ ville: this.props.name, temp: this.props.temp, daily: this.props.listPrevisionDays, weather: this.props.weather });
+        this.props.addFavorite({ ville: this.props.name, temp: this.props.temp, daily: this.props.listPrevisionDays, weather: this.props.weather, hourly: this.props.listPrevisionHours});
         this.setState({
             favON: true,
         });
@@ -46,7 +46,6 @@ class Card extends Component {
         let currentHours = currentDate.getHours();
 
         return currentHours
-
     }
     deleteClick(){
         this.setState({

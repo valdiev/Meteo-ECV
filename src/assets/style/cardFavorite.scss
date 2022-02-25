@@ -68,6 +68,18 @@
             margin: 0 0 1em;
         }
     }
+
+    .previsionBtn {
+        padding: 0;
+        border: 0px;
+        background-color: unset;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        color: #000;
+        text-decoration: underline;
+        margin: 0 0 1rem;
+        cursor: pointer;
+    }
 }
 .favorite {
     &__grid {
@@ -83,6 +95,7 @@
             color: #fff;
             width: 100%;
             position: relative;
+            overflow: hidden;
 
             .delete-btn {
                 width: 40px;
@@ -115,7 +128,54 @@
                 }
             }
 
+            &-container {
+                // display: flex;
+                position: relative;
+                transition: transform .4s ease;
+
+                &.slide {
+                    transform: translateX(-110%);
+                }
+            }
+
             &-prevision {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+                position: absolute;
+                bottom: 0;
+                right: 50%;
+                transform: translate(calc(150% + 2rem), 0px);
+                width: 100%;
+
+                &-day {
+                    text-align: center;
+                    min-width: 6vw;
+
+                    h4 {
+                        text-transform: uppercase;
+                        font-size: .8rem;
+                    }
+
+                    span {
+                        display: block;
+
+                        &.icon {
+                            margin: .5rem 0;
+                            img{
+                                width: 32px;
+                                height: 32px;
+                            }
+                        }
+
+                        &:last-child {
+                            font-size: 1rem;
+                        }
+                    }
+                }
+            }
+
+            &-prevision-week {
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
                 gap: 2rem;
@@ -145,7 +205,6 @@
                     }
                 }
             }
-
 
             &-image {
                 position: absolute;
@@ -177,6 +236,9 @@
             grid-template-columns: repeat(2, 1fr);
         }
     }
+    .favorite__grid-information-prevision-day {
+        min-width: 12vw;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -184,5 +246,14 @@
         &__grid {
             grid-template-columns: 1fr;
         }
+    }
+    .favorite__grid-information-prevision-day {
+        min-width: 33vw;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .favorite__grid-information-prevision-day {
+        min-width: 20vw;
     }
 }
