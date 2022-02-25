@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import meteoRepository from "../repository/meteoRepository";
 import Loader from './Loader';
-import App from "../App";
 import Card from "./Card";
 
 
@@ -63,7 +61,6 @@ export default class Homepage extends Component{
         return (
             <>
                 <div className={this.props.searchBar ? "form__group field active" :"form__group field" } >
-                    {console.log(this.props.searchBar)}
                     <div className="form">
                         <label htmlFor="name" className="form__label">Choisissez une ville</label>
                         <input onKeyUp={(event) => { if(event.key === 'Enter') this.submitForm();}} autoComplete="off" type="text" className="form__field"  name="ville" id='ville' placeholder={this.state.ville} onChange={this.handleChange}

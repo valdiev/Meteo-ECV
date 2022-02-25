@@ -451,7 +451,6 @@ export const favoriteSlice = createSlice({
     reducers:{
         addFavorite: (state,action) => {
             state.listOfFavorite.push(action.payload);
-            console.log(current(state.listOfFavorite));
         },
         deleteFavorite: (state,action) =>{
             state.listOfFavorite.splice(action.payload,1);

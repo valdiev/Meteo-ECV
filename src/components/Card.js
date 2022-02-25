@@ -43,7 +43,6 @@ class Card extends Component {
             favON: true,
             etat: "ajoutée aux",
         });
-        this.props.addFavorite({ ville: this.props.name, temp: this.props.temp, daily: this.props.listPrevisionDays, weather: this.props.weather, alreadyFav : this.state.favON });
         modal.classList.add("active");
         setTimeout(()=>{
             modal.classList.remove("active");
