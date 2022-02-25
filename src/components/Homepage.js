@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import meteoRepository from "../repository/meteoRepository";
 import Loader from './Loader';
 import App from "../App";
@@ -15,7 +16,7 @@ export default class Homepage extends Component{
             weatherByName: "",
             temp: "",
             search: false,
-
+            searchBar: false,
         }
         this.handleChange = this.handleChange.bind(this);
     }
@@ -60,18 +61,21 @@ export default class Homepage extends Component{
 
     render() {
         return (
-            <div>
-                <div className="form__group field">
-                    <input onKeyUp={(event) => { if(event.key === 'Enter') this.submitForm();}} autoComplete="off" type="text" className="form__field"  name="ville" id='ville' placeholder={this.state.ville} onChange={this.handleChange}
-                           required/>
-                    <label htmlFor="name" className="form__label">Choisissez une ville</label>
-                    <button className="searchBtn" onClick={() => this.submitForm()}>Envoyer</button>
+            <>
+                <div className={this.props.searchBar ? "form__group field active" :"form__group field" } >
+                    {console.log(this.props.searchBar)}
+                    <div className="form">
+                        <label htmlFor="name" className="form__label">Choisissez une ville</label>
+                        <input onKeyUp={(event) => { if(event.key === 'Enter') this.submitForm();}} autoComplete="off" type="text" className="form__field"  name="ville" id='ville' placeholder={this.state.ville} onChange={this.handleChange}
+                            required/>
+                        <button className="searchBtn" onClick={() => this.submitForm()}>Envoyer</button>
+                    </div>
                 </div>
                 {this.state.weatherForecast ?
-                    <Card name={this.state.weather.name} temp={this.state.weather.main.temp} weather={this.state.weather.weather[0].icon} listPrevisionDays={this.state.weatherForecast.daily} listPrevisionHours={this.state.weatherForecast.hourly}/>
+                    <Card name={this.state.weather.name} temp={this.state.weather.main.temp} weather={this.state.weather.weather[0].icon} listPrevisionDays={this.state.weatherForecast.daily} listPrevisionHours={this.state.weatherForecast.hourly} searchBar={this.state.searchBar}/>
                     : <Loader />
                 }
-            </div>
+            </>
         );
     }
 }

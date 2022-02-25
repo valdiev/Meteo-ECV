@@ -33,13 +33,11 @@ header {
             }
             li {
                 list-style: none;
-                p{
-                    font-family: 'Montserrat', sans-serif;
-                    font-size: .8rem;
-                    color: #000;
-                    position: relative;
-                    cursor: pointer;
-                }
+                font-family: 'Montserrat', sans-serif;
+                font-size: .8rem;
+                color: #000;
+                position: relative;
+                cursor: pointer;
                 a {
                     text-decoration: none;
                     font-family: 'Montserrat', sans-serif;
@@ -246,6 +244,7 @@ header {
                 nav {
                     ul {
                         li {
+                            color: #000;
                             a {
                                 color: #000;
                             }
@@ -259,6 +258,7 @@ header {
             nav {
                 ul {
                     li {
+                        color: #fff;
                         a {
                             color: #fff;
                         }

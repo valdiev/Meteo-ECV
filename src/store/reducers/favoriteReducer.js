@@ -257,7 +257,7 @@ export const favoriteSlice = createSlice({
         },
         deleteFavorite: (state,action) =>{
             state.listOfFavorite.splice(action.payload,1);
-        }
+        },
     }
 })
 

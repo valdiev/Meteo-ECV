@@ -87,7 +87,7 @@ class Card extends Component {
     render() {
         return (
             <main className="position">
-                <App />
+                <App searchBar={this.props.searchBar} />
                 <div className="position__information container">
                     <Modal ville={this.props.name} etat={this.state.etat}/>
                     <div className="addFav">
