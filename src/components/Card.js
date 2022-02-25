@@ -45,7 +45,7 @@ class Card extends Component {
     }
 
     submitForm() {
-        this.props.addFavorite({ ville: this.props.name, temp: this.props.temp, daily: this.props.listPrevision, weather: this.props.weather });
+        this.props.addFavorite({ ville: this.props.name, temp: this.props.temp, daily: this.props.listPrevisionDays, weather: this.props.weather });
         if(this.state.favON === false) {
             this.setState({
                 favON: true,
@@ -81,7 +81,7 @@ class Card extends Component {
                                 <span>{Math.floor(jour.temp.day)}°</span>
                             </div>
                         }) : null}
-                        <button onClick={() => this.setState({menu: !this.state.menu})}>{console.log(this.state.menu)}Prévisions</button>
+                        <button onClick={() => this.setState({menu: !this.state.menu})}>Prévisions</button>
                     </div>
                     <div className="position__information-prevision">
                         {this.props.listPrevisionHours != null ? this.props.listPrevisionHours.slice(0, 6).map((hours, index) => {

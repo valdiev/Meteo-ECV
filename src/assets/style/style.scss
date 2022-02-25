@@ -162,7 +162,7 @@ header {
                 border: 0px;
                 background-color: #f4f4f4;
                 padding: 1rem;
-
+                cursor: pointer;
             }
         }
 
@@ -233,6 +233,32 @@ header {
         width: 90%;
     }
     main {
+        &.favorite {
+            header {
+                width: 100%;
+                nav {
+                    ul {
+                        li {
+                            a {
+                                color: #000;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        header {
+            width: 100%;
+            nav {
+                ul {
+                    li {
+                        a {
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+        }
         // display: flex;
         .position {
             position: relative;

@@ -76,14 +76,14 @@ export default class SearchbyName extends Component{
         return (
             <div className="formulaire">
                 {this.state.weatherByName ?
-                    <Card recherche={true} name={this.state.weatherByName.name} temp={this.state.weatherByName.main.temp} weather={this.state.weatherByName.weather[0].icon} listPrevisionDays={this.state.weatherForecast.daily}/>
+                    <Card recherche={true} name={this.state.weatherByName.name} temp={this.state.weatherByName.main.temp} weather={this.state.weatherByName.weather[0].icon} listPrevisionDays={this.state.weatherForecast.daily} listPrevisionHours={this.state.weatherForecast.hourly}/>
                         :
                     <div className="search_beginning">
                         <Loader />
                         <div className="form__group field">
                             <input autoComplete="off" type="text" className="form__field"  name="ville" id='ville' placeholder={this.state.ville} onChange={this.handleChange} />
                             <label htmlFor="name" className="form__label">Choisissez une ville</label>
-                            <button onClick={() => this.submitForm()}>Envoyer</button>
+                            <button className="searchBtn" onClick={() => this.submitForm()}>Envoyer</button>
                         </div>
                     </div>
                 }
