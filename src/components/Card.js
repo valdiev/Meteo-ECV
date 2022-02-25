@@ -3,7 +3,7 @@ import {addFavorite, deleteFavorite} from "../store/reducers/favoriteReducer";
 import { connect } from "react-redux";
 import App from "../App";
 import {RiStarSLine,RiStarSFill} from "react-icons/ri";
-import meteoRepository from "../repository/meteoRepository";
+import Modal from "./Modal";
 
 
 class Card extends Component {
@@ -13,6 +13,7 @@ class Card extends Component {
             listOfFavorite: [],
             favON : false,
             menu: false,
+            etat: "",
         }
 
     }
@@ -36,21 +37,28 @@ class Card extends Component {
     }
 
     submitForm() {
+        let modal = document.querySelector(".modal")
         this.props.addFavorite({ ville: this.props.name, temp: this.props.temp, daily: this.props.listPrevisionDays, weather: this.props.weather });
         this.setState({
             favON: true,
+            etat: "ajoutée aux",
         });
+        modal.classList.add("active");
+        setTimeout(()=>{
+            modal.classList.remove("active");
+            },3000
+        );
     }
     addHours(index) {
         let currentDate = new Date(Date.now() + index * (3600*1000));
         let currentHours = currentDate.getHours();
-
         return currentHours
 
     }
     deleteClick(){
         this.setState({
             favON: false,
+            etat: "supprimé des favoris"
         });
         let currentVille = this.props.name;
         let index = 0;
@@ -60,6 +68,12 @@ class Card extends Component {
             }
         })
         this.props.deleteFavorite(index);
+        let modal = document.querySelector(".modal")
+        modal.classList.add("active");
+        setTimeout(()=>{
+                modal.classList.remove("active");
+            },3000
+        );
     }
     componentDidUpdate(prevProps, prevState, snapshot) {
         if(prevProps.listOfFavorite !== this.props.listOfFavorite){
@@ -76,6 +90,7 @@ class Card extends Component {
             <main className="position">
                 <App />
                 <div className="position__information container">
+                    <Modal ville={this.props.name} etat={this.state.etat}/>
                     <div className="addFav">
                         { this.state.favON === false ?
                             <a onClick={() => this.submitForm()}><RiStarSLine style={{fontSize:"2rem"}}/></a>

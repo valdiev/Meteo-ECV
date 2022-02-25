@@ -4,6 +4,7 @@ import CardFavorite from "../components/CardFavorite";
 import App from "../App";
 
 import '../assets/style/cardFavorite.scss';
+import Modal from "../components/Modal";
 
 class Favorite extends Component {
     constructor(props) {
@@ -38,6 +39,7 @@ class Favorite extends Component {
         return (
             <main className={this.state.editFav === true ? "favorite container favorite_container active": "favorite container favorite_container" }>
                 <App />
+                <Modal ville={this.props.ville} etat={this.state.etat}/>
                 <div className="favorite__header">
                     {this.state.listOfFavorite.length !== 0 ? <div>
                     <h2 className="fav">Mes favoris</h2>

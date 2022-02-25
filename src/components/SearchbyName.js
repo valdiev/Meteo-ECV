@@ -14,7 +14,6 @@ export default class SearchbyName extends Component{
             weatherByName: '',
             weatherForecast: '',
             temp: '',
-            err: "",
         }
         this.handleChange = this.handleChange.bind(this);
     }
@@ -40,21 +39,28 @@ export default class SearchbyName extends Component{
         return dt;
     }
     async submitForm() {
-        this.setState({
-            ...this.state,
-            weatherByName: await meteoRepository.getWeatherByCityName(this.state.ville),
-        });
-        this.setState({
-            ...this.state,
-            temp: this.state.weatherByName.main.temp,
-            weatherForecast: await meteoRepository.getWeatherOneCall(this.state.weatherByName.coord.lat, this.state.weatherByName.coord.lon)
-        });
-        this.state.ville = "";
+        try{
+            this.setState({
+                ...this.state,
+                weatherByName: await meteoRepository.getWeatherByCityName(this.state.ville),
+            });
+            this.setState({
+                ...this.state,
+                temp: this.state.weatherByName.main.temp,
+                weatherForecast: await meteoRepository.getWeatherOneCall(this.state.weatherByName.coord.lat, this.state.weatherByName.coord.lon)
+            });
+            this.state.ville = "";
+        }
+        catch (err){
+            return window.location.pathname="/search";
+        }
     }
+
+
     render(){
         return (
             <div className="formulaire">
-                {this.state.weatherByName ?
+                { this.state.weatherByName ?
                     <Card recherche={true} name={this.state.weatherByName.name} temp={this.state.weatherByName.main.temp} weather={this.state.weatherByName.weather[0].icon} listPrevisionDays={this.state.weatherForecast.daily} listPrevisionHours={this.state.weatherForecast.hourly}/>
                     :
                     <div className="search_beginning">

@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './assets/style/style.scss';
 import './assets/style/loader.scss';
+import './assets/style/modal.scss';
 import './assets/style/search.scss';
 import {useEffect, useState} from "react";
 import {Link, Outlet} from "react-router-dom";

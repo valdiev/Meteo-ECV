@@ -40,7 +40,6 @@ class CardFavorite extends Component {
                     <h2>{this.props.ville}</h2>
                     <h3>{Math.floor(this.props.temp)}°</h3>
                 </div>
-
                 <div className="favorite__grid-information-prevision">
                     {this.props.daily ? this.props.daily.map((jour, index) => {
                         return <div key={index} className="favorite__grid-information-prevision-day">

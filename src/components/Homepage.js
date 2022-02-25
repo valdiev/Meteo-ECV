@@ -28,7 +28,6 @@ export default class Homepage extends Component{
                     weather: await meteoRepository.getWeather(latitude,longitude),
                     weatherForecast: await meteoRepository.getWeatherOneCall(latitude, longitude)
                 });
-                console.log(this.state.weatherForecast);
             });
 
             
