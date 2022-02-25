@@ -95,7 +95,6 @@
             color: #fff;
             width: 100%;
             position: relative;
-            overflow: hidden;
 
             .delete-btn {
                 width: 40px;
@@ -134,7 +133,7 @@
                 transition: transform .4s ease;
 
                 &.slide {
-                    transform: translateX(-110%);
+                    transform: translateX(-112%);
                 }
             }
 
