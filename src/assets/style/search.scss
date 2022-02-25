@@ -84,3 +84,11 @@
     }
   }
 }
+
+@media screen and (max-width: 1024px) {
+  .formulaire {
+    .form__group {
+      width: 80%;
+    }
+  }
+}
