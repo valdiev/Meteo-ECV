@@ -46,12 +46,13 @@ class Favorite extends Component {
                     <h2 className="fav">Mes favoris</h2>
                     <h2>{this.format(0,"long")}</h2>
                     <button className="btn_edit" onClick={() => this.setState({
-                editFav : !this.state.editFav,})}>Modifier mes favoris</button></div> : <div>
+                editFav : !this.state.editFav,})}>Modifier mes favoris</button>
+                    </div> : <div>
                         <h2 className="fav">Vous n'avez pas de favoris</h2>
                         <h2>{this.format(0,"long")}</h2>
-                        <a className="btn_edit" href="/search">Rechercher une ville</a></div> }
+                        <a className="btn_edit" href="/">Rechercher une ville</a></div> }
                 </div>
-                <button className="previsionBtn" onClick={() => this.setState({slide: !this.state.slide})}>Afficher les prévisions {!this.state.slide ? "de la semaine" : "du jour"}</button>
+                { this.state.listOfFavorite.length!== 0 ? <button className="previsionBtn" onClick={() => this.setState({slide: !this.state.slide})}>Afficher les prévisions {!this.state.slide ? "de la semaine" : "du jour"}</button> : null }
                 <section className="favorite__grid">
                     {this.state.listOfFavorite.length !== 0 ? this.state.listOfFavorite.map((user, index) => {
                         return <CardFavorite index={index} key={index} ville={user.ville} temp={user.temp} daily={user.daily} hourly={user.hourly} weather={user.weather} slide={this.state.slide}/>
