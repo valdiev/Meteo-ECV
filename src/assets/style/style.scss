@@ -197,8 +197,8 @@ header {
                     align-items: center;
 
                     img {
-                        width: 100%;
-                        height: auto;
+                        width: 32px;
+                        height: 32px;
                     }
                 }
             }
@@ -218,9 +218,12 @@ header {
 }
 
 @media screen and (max-width: 1024px) {
+    header{
+        padding: 2rem 2rem;
+    }
     .position {
         &__information {
-            padding: 5rem 4rem;
+            padding: 5rem 2rem;
         }
     }
 }

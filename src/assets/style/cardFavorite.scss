@@ -133,6 +133,10 @@
 
                         &.icon {
                             margin: .5rem 0;
+                            img{
+                                width: 32px;
+                                height: 32px;
+                            }
                         }
 
                         &:last-child {
