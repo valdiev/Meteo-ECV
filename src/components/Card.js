@@ -12,6 +12,7 @@ class Card extends Component {
         this.state = {
             listOfFavorite: [],
             favON : false,
+            menu: false,
         }
 
     }
@@ -35,10 +36,17 @@ class Card extends Component {
     }
 
     submitForm() {
-        this.props.addFavorite({ ville: this.props.name, temp: this.props.temp, daily: this.props.listPrevision, weather: this.props.weather });
+        this.props.addFavorite({ ville: this.props.name, temp: this.props.temp, daily: this.props.listPrevisionDays, weather: this.props.weather });
         this.setState({
             favON: true,
         });
+    }
+    addHours(index) {
+        let currentDate = new Date(Date.now() + index * (3600*1000));
+        let currentHours = currentDate.getHours();
+
+        return currentHours
+
     }
     deleteClick(){
         this.setState({
@@ -80,19 +88,33 @@ class Card extends Component {
                         <h2>{this.props.name}</h2>
                         <h3>{Math.floor(this.props.temp)}°</h3>
                     </div>
-                    <div className="position__information-prevision">
-                        {this.props.listPrevision != null ? this.props.listPrevision.map((jour, index) => {
-                            return <div className="position__information-prevision-day">
+                    <div className={ this.state.menu ? "position__information-prevision-week active" : "position__information-prevision-week"}>
+                        {this.props.listPrevisionDays != null ? this.props.listPrevisionDays.slice(0, 5).map((jour, index) => {
+                            return <div className="position__information-prevision-week-day">
                                 <h4>{this.format(index + 1, "court")}</h4>
                                 <span className="icon">
-                                    <picture>
-                                        <source srcSet={`./img/svg/${jour.weather[0].icon}.svg`} media="(min-width:768px)"></source>
-                                        <source srcSet={`./img/svg/white/${jour.weather[0].icon}.svg`} media="(max-width:767px)"></source>
-                                        <img src={`./img/svg/${jour.weather[0].icon}.svg`} />
-                                    </picture>
+                                    <img src={`./img/svg/${jour.weather[0].icon}.svg`} />
                                 </span>
                                 <span>{Math.floor(jour.temp.day)}°</span>
                             </div>
+                        }) : null}
+                        <button onClick={() => this.setState({menu: !this.state.menu})}>Prévisions</button>
+                    </div>
+                    <div className="position__information-prevision">
+                        {this.props.listPrevisionHours != null ? this.props.listPrevisionHours.slice(0, 6).map((hours, index) => {
+                            return (
+                                <div className="position__information-prevision-day">
+                                    <h4>{this.addHours(index + 1)}:00</h4>
+                                    <span className="icon">
+                                    <picture>
+                                        <source srcSet={`./img/svg/${hours.weather[0].icon}.svg`} media="(min-width:768px)"></source>
+                                        <source srcSet={`./img/svg/white/${hours.weather[0].icon}.svg`} media="(max-width:767px)"></source>
+                                        <img src={`./img/svg/${hours.weather[0].icon}.svg`} />
+                                    </picture>
+                                </span>
+                                    <span>{Math.floor(hours.temp)}°</span>
+                                </div>
+                            )
                         }) : null}
                     </div>
                 </div>
